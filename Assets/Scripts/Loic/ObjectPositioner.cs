@@ -5,8 +5,8 @@ public class ObjectPositioner : MonoBehaviour
 {
     private Grid grid;
 
-    [SerializeField]
-    public Camera cam;
+    //[SerializeField]
+    //public Camera cam;
 
     private void Awake()
     {
@@ -18,7 +18,7 @@ public class ObjectPositioner : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hitInfo;
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(ray, out hitInfo))
             {
