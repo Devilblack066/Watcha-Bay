@@ -5,6 +5,12 @@ public class ObjectPositioner : MonoBehaviour
 {
     private Grid grid;
 
+    Ray ray;
+    RaycastHit hitInfo;
+
+[SerializeField]
+    public GameObject batiments;
+
     //[SerializeField]
     //public Camera cam;
 
@@ -17,19 +23,35 @@ public class ObjectPositioner : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            RaycastHit hitInfo;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(ray, out hitInfo))
             {
-                PlaceCubeNear(hitInfo.point);
+                if(hitInfo.collider.CompareTag("batiments"))
+                {
+                    Debug.Log("il ya deja un batiment");
+                }else{
+    
+                PlaceCubeNear(hitInfo.point,batiments);
+
+                }
             }
         }
     }
 
-    private void PlaceCubeNear(Vector3 clickPoint)
+    private void PlaceCubeNear(Vector3 clickPoint,GameObject batiment)
     {
+        
         var finalPosition = grid.GetNearestPointOnGrid(clickPoint);
-        GameObject.CreatePrimitive(PrimitiveType.Cube).transform.position = finalPosition;
+        var objetinst = Instantiate(batiment,clickPoint,Quaternion.identity);
+        objetinst.transform.position = finalPosition;
+
     }
+
+    private void CheckAllSize(Vector3 clickPoint,GameObject batiment)
+    {
+
+    }
+
 }
