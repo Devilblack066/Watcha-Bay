@@ -13,7 +13,7 @@ public class Cam2World : MonoBehaviour
 
     void Update()
     {
-        Ray ray = cam.ScreenPointToRay(new Vector3(200, 200, 0));
-        Debug.DrawRay(ray.origin, ray.direction * 10, Color.yellow);
+        //Ray ray = cam.ScreenPointToRay(new Vector3(200, 200, 0));
+        //Debug.DrawRay(ray.origin, ray.direction * 10, Color.yellow);
     }
 }
