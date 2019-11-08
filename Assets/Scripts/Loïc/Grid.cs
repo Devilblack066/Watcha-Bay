@@ -9,7 +9,10 @@ public class Grid : MonoBehaviour
     private float size = 1f;
 
     [SerializeField]
-    private int gridWorldSize = 50;
+    private int gridWorldSizeX = 50;
+
+    [SerializeField]
+    private int gridWorldSizeY = 50;
 
     public Vector3 GetNearestPointOnGrid(Vector3 position)
     {
@@ -32,9 +35,9 @@ public class Grid : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        for (float x = 0; x < gridWorldSize; x += size)
+        for (float x = 0; x < gridWorldSizeX; x += size)
         {
-            for (float z = 0; z < gridWorldSize; z += size)
+            for (float z = 0; z < gridWorldSizeY; z += size)
             {
                 var point = GetNearestPointOnGrid(new Vector3(x, 0f, z));
                 Gizmos.DrawSphere(point, 0.1f);

@@ -44,4 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 1
-  gridWorldSize: 50
+  gridWorldSizeX: 10
+  gridWorldSizeY: 60
