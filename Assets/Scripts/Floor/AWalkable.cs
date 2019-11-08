@@ -1,0 +1,26 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class AWalkable : MonoBehaviour
+{
+    public bool IsUnlock;
+    public typeOfWalkable theType;
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}
+
+public enum typeOfWalkable
+{
+    Sand,
+    Water
+}
