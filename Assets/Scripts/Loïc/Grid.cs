@@ -40,7 +40,7 @@ public class Grid : MonoBehaviour
             for (float z = 0; z < gridWorldSizeY; z += size)
             {
                 var point = GetNearestPointOnGrid(new Vector3(x, 0f, z));
-                Gizmos.DrawSphere(point, 0.1f);
+                Gizmos.DrawWireCube(point,new Vector3(0.1f*size,0.1f*size,0.1f*size));
             }
                 
         }
