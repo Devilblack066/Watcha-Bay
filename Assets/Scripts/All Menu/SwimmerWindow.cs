@@ -19,7 +19,7 @@ public class SwimmerWindow : MonoBehaviour
         {
             //Debug.Log("????");
             transform.position = swimmer.transform.position;
-           // transform.LookAt(myCamera.transform);
+            //transform.LookAt(myCamera.transform);
             //Debug.Log(transform.position);
         }
     }

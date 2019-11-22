@@ -11,7 +11,7 @@ public class CameraScript : MonoBehaviour
     Vector3 VectorBetweenPoints;
 
     float CurrentPos = 0.5f;
-    float speed = 0.2f;
+    float speed = 0.1f;
 
     bool isTouching;
 
@@ -122,7 +122,7 @@ public class CameraScript : MonoBehaviour
     void MoveCamera()
     {
         Vector3 result = LeftPoint.transform.position + (VectorBetweenPoints * CurrentPos);
-        transform.position = new Vector3(result.x-5000, transform.position.y, transform.position.z);
+        transform.position = new Vector3(result.x-25, transform.position.y, transform.position.z);
     }
     void ShowSwimmerStat(GameObject swimmer)
     {
