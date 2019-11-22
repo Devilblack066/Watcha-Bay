@@ -4,6 +4,8 @@ using UnityEngine;
 public class ObjectPositioner : MonoBehaviour
 {
     private Grid grid;
+    public GameObject actualbat;
+    public GameObject objetinst = null;
 
     Ray ray;
     RaycastHit hitInfo;
@@ -19,7 +21,7 @@ public class ObjectPositioner : MonoBehaviour
         grid = FindObjectOfType<Grid>();
     }
 
-    private void Update()
+    public void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -28,29 +30,22 @@ public class ObjectPositioner : MonoBehaviour
 
             if (Physics.Raycast(ray, out hitInfo))
             {
-                if(hitInfo.collider.CompareTag("batiments"))
+                if(hitInfo.collider.CompareTag("batiments") )
                 {
                     Debug.Log("il ya deja un batiment");
                 }else{
-    
-                PlaceCubeNear(hitInfo.point,batiments);
-
+                    PlaceCubeNear(hitInfo.point,batiments);
                 }
             }
         }
     }
 
-    private void PlaceCubeNear(Vector3 clickPoint,GameObject batiment)
+    public void PlaceCubeNear(Vector3 clickPoint,GameObject batiment)
     {
-        
-        var finalPosition = grid.GetNearestPointOnGrid(clickPoint);
-        var objetinst = Instantiate(batiment,clickPoint,Quaternion.identity);
-        objetinst.transform.position = finalPosition;
-
-    }
-
-    private void CheckAllSize(Vector3 clickPoint,GameObject batiment)
-    {
+            var finalPosition = grid.GetNearestPointOnGrid(clickPoint);
+             objetinst = Instantiate(batiment,clickPoint,Quaternion.identity);
+             objetinst.transform.position = finalPosition;
+             actualbat = objetinst;   
 
     }
 
