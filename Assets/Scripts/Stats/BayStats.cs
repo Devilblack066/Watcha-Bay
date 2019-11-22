@@ -46,7 +46,7 @@ public class BayStats : MonoBehaviour
     public Vector3 FindAPointOnBeach()
     {
         GameObject goToWalk = AllwalkablesBeach[Random.Range(0, AllwalkablesBeach.Length)];
-        Debug.Log("The X : "+ Random.Range(goToWalk.transform.position.x - goToWalk.transform.localScale.x , goToWalk.transform.localScale.x + goToWalk.transform.localScale.x ));
+        //Debug.Log("The X : "+ Random.Range(goToWalk.transform.position.x - goToWalk.transform.localScale.x , goToWalk.transform.localScale.x + goToWalk.transform.localScale.x ));
         return new Vector3(Random.Range(goToWalk.transform.position.x - goToWalk.transform.localScale.x * 4, goToWalk.transform.localScale.x + goToWalk.transform.localScale.x * 4)
                                  , goToWalk.transform.position.y + transform.localScale.y/2
                                  , Random.Range(goToWalk.transform.position.z - goToWalk.transform.localScale.z * 4, goToWalk.transform.position.z + goToWalk.transform.localScale.z * 4));

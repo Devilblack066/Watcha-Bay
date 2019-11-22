@@ -7,10 +7,14 @@ public class CameraScript : MonoBehaviour
     public static bool onSomething;
     public GameObject LeftPoint;
     public GameObject RightPoint;
+    public GameObject UpPoint;
+    public GameObject DownPoint;
 
-    Vector3 VectorBetweenPoints;
+    Vector3 VectorBetweenPointsX;
+    Vector3 VectorBetweenPointsY;
 
-    float CurrentPos = 0.5f;
+    float CurrentPosX = 0.5f;
+    float CurrentPosY = 0.5f;
     float speed = 0.1f;
 
     bool isTouching;
@@ -21,7 +25,10 @@ public class CameraScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        VectorBetweenPoints = RightPoint.transform.position - LeftPoint.transform.position;
+        VectorBetweenPointsX = RightPoint.transform.position - LeftPoint.transform.position;
+        VectorBetweenPointsY = UpPoint.transform.position - DownPoint.transform.position;
+        Debug.Log(VectorBetweenPointsX);
+        Debug.Log(VectorBetweenPointsY);
     }
 
     // Update is called once per frame
@@ -51,7 +58,7 @@ public class CameraScript : MonoBehaviour
             //Debug.Log(isTouching);
         }
 
-
+        //Debug.Log(CurrentPosY);
 
         //Camera qui bouge
         TestCameraMove();
@@ -98,14 +105,27 @@ public class CameraScript : MonoBehaviour
             if (Input.GetAxis("Mouse X") != 0)//
             {
                 //Debug.Log(Input.GetAxis("Mouse X"));
-                if(Input.GetAxis("Mouse X") > 0 && CurrentPos > 0)
+                if(Input.GetAxis("Mouse X") > 0 && CurrentPosX > 0)
                 {
-                    CurrentPos -= Input.GetAxis("Mouse X") * speed;
+                    CurrentPosX -= Input.GetAxis("Mouse X") * speed;
                 }
-                if (Input.GetAxis("Mouse X") < 0 && CurrentPos < 1)
+                if (Input.GetAxis("Mouse X") < 0 && CurrentPosX < 1)
                 {
-                    CurrentPos -= Input.GetAxis("Mouse X") * speed;
+                    CurrentPosX -= Input.GetAxis("Mouse X") * speed;
                 }
+            }
+            if (Input.GetAxis("Mouse Y") != 0)//
+            {
+                //Debug.Log(Input.GetAxis("Mouse X"));
+                if (Input.GetAxis("Mouse Y") > 0 && CurrentPosY > 0)
+                {
+                    CurrentPosY -= Input.GetAxis("Mouse Y") * speed;
+                }
+                if (Input.GetAxis("Mouse Y") < 0 && CurrentPosY < 1)
+                {
+                    CurrentPosY -= Input.GetAxis("Mouse Y") * speed;
+                }
+               //Debug.Log(Input.GetAxis("Mouse Y"));
             }
             if (Input.touchCount > 0)
             {
@@ -121,8 +141,8 @@ public class CameraScript : MonoBehaviour
     }
     void MoveCamera()
     {
-        Vector3 result = LeftPoint.transform.position + (VectorBetweenPoints * CurrentPos);
-        transform.position = new Vector3(result.x-25, transform.position.y, transform.position.z);
+        Vector3 result = (LeftPoint.transform.position + (VectorBetweenPointsX * CurrentPosX)) + (DownPoint.transform.position + (VectorBetweenPointsY * CurrentPosY));
+        transform.position = new Vector3(result.x-25, transform.position.y, result.z - 25);
     }
     void ShowSwimmerStat(GameObject swimmer)
     {
