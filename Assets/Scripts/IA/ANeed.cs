@@ -34,7 +34,7 @@ public class ANeed : MonoBehaviour
                             new ANeed(typeOfNeed.Thirst,"Thrist",100,100),
                             new ANeed(typeOfNeed.Entertainment,"Entertainment",100,100),
                             new ANeed(typeOfNeed.Tiredness,"Tiredness",100,100),
-                            new ANeed(typeOfNeed.Hygiene,"Tiredness",100,100)};
+                            new ANeed(typeOfNeed.Hygiene,"Hygiene",100,100)};
     }
 }
 
