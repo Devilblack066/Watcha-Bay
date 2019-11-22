@@ -5,35 +5,50 @@ using UnityEngine.AI;
 
 public class Swimmer : MonoBehaviour
 {
-    PatrolScript myPatrol;
+    public BayStats bayStats;
+
     NavMeshAgent myAgent;
     ANeed[] myNeeds;
     Vector3 Destination;
+
+    public bool isHighLighted = false;
     // Start is called before the first frame update
     void Start()
     {
-        myPatrol = GetComponent<PatrolScript>();
+        //myPatrol = GetComponent<PatrolScript>();
         myAgent  = GetComponent<NavMeshAgent>();
+        myAgent.updateRotation = false;
         myNeeds = ANeed.generateBasicalNeeds();
         StartCoroutine(decreaseRessByTime(5.0f));
-        Destination = myPatrol.FindAPointOnBeach();
+        Destination = bayStats.FindAPointOnBeach();
         MoveTo();
+    }
+
+    public ANeed[] GetmyNeeds()
+    {
+        return (myNeeds);
     }
 
     // Update is called once per frame
     void Update()
     {
         Collider[] colliders = Physics.OverlapBox(gameObject.transform.position, transform.localScale / 2);
-        if (Vector3.Distance(this.transform.position,Destination) < 500)
+        if (Vector3.Distance(this.transform.position,Destination) < 2 && bayStats)
         {
-            Destination = myPatrol.FindAPointOnBeach();
+            Destination = bayStats.FindAPointOnBeach();
             MoveTo();
         }
+        if (myNeeds[4].Value < 30)
+        {
+            leaveTheBay();
+        }
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        transform.LookAt(Destination);
+
+        /*if(Input.GetKeyDown(KeyCode.Space))
         {
             showNeeds();
-        }
+        }*/
     }
     void MoveTo()
     {
@@ -62,5 +77,15 @@ public class Swimmer : MonoBehaviour
             //Debug.Log("?");
             yield return new WaitForSeconds(delay);
         }
+    }
+    public void setBay(BayStats tb)
+    {
+        bayStats = tb;
+    }
+
+    public void leaveTheBay()
+    {
+        bayStats.leaveTheBay(gameObject);
+        Destroy(gameObject);
     }
 }

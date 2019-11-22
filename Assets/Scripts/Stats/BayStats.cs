@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-
-public class PatrolScript : MonoBehaviour
+public class BayStats : MonoBehaviour
 {
+    int currentSwimmer = 0;
+    int maxSwimmer = 5;
+
     public List<GameObject> AllFloors;
     //public GameObject goal;
     List<GameObject> CatchedGOsBeach;
@@ -19,9 +20,11 @@ public class PatrolScript : MonoBehaviour
 
     //public GameObject TheMesh;
 
+    List<GameObject> AllSwimmers;
     // Start is called before the first frame update
     void Awake()
     {
+        AllSwimmers = new List<GameObject>();
         FindAllWalkablesFloor();
         //FindAPoint();
         //FindAPointOnBeach();
@@ -44,17 +47,17 @@ public class PatrolScript : MonoBehaviour
     {
         GameObject goToWalk = AllwalkablesBeach[Random.Range(0, AllwalkablesBeach.Length)];
         //Debug.Log("The X : "+ Random.Range(goToWalk.transform.position.x - goToWalk.transform.localScale.x , goToWalk.transform.localScale.x + goToWalk.transform.localScale.x ));
-        return new Vector3(Random.Range(goToWalk.transform.position.x-goToWalk.transform.localScale.x*4, goToWalk.transform.localScale.x + goToWalk.transform.localScale.x*4)
-                                 ,goToWalk.transform.position.y + transform.localScale.y
-                                 , Random.Range(goToWalk.transform.position.z - goToWalk.transform.localScale.z*4, goToWalk.transform.position.z + goToWalk.transform.localScale.z*4));
+        return new Vector3(Random.Range(goToWalk.transform.position.x - goToWalk.transform.localScale.x * 4, goToWalk.transform.localScale.x + goToWalk.transform.localScale.x * 4)
+                                 , goToWalk.transform.position.y + transform.localScale.y/2
+                                 , Random.Range(goToWalk.transform.position.z - goToWalk.transform.localScale.z * 4, goToWalk.transform.position.z + goToWalk.transform.localScale.z * 4));
         //GetComponent<NavMeshAgent>().SetDestination(Destination);
     }
     public Vector3 FindAPointOnWater()
     {
         GameObject goToWalk = AllwalkablesWater[Random.Range(0, AllwalkablesBeach.Length)];
-        //Debug.Log("The X : "+ Random.Range(goToWalk.transform.position.x - goToWalk.transform.localScale.x , goToWalk.transform.localScale.x + goToWalk.transform.localScale.x ));
+        Debug.Log(goToWalk.transform.position.x - goToWalk.transform.localScale.x * 4 +"         " +goToWalk.transform.localScale.x + goToWalk.transform.localScale.x * 4);
         return new Vector3(Random.Range(goToWalk.transform.position.x - goToWalk.transform.localScale.x * 4, goToWalk.transform.localScale.x + goToWalk.transform.localScale.x * 4)
-                                 , goToWalk.transform.position.y + transform.localScale.y
+                                 , goToWalk.transform.position.y + transform.localScale.y/2
                                  , Random.Range(goToWalk.transform.position.z - goToWalk.transform.localScale.z * 4, goToWalk.transform.position.z + goToWalk.transform.localScale.z * 4));
         //GetComponent<NavMeshAgent>().SetDestination(Destination);
     }
@@ -79,5 +82,21 @@ public class PatrolScript : MonoBehaviour
         }
         AllwalkablesBeach = CatchedGOsBeach.ToArray();
         AllwalkablesWater = CatchedGOsBeach.ToArray();
+    }
+
+    public void addSwimmer(GameObject swimmer)
+    {
+        ++currentSwimmer;
+        AllSwimmers.Add(swimmer);
+    }
+    public bool canAddSwimmer()
+    {
+        if (currentSwimmer < maxSwimmer) return true;
+        else return false;
+    }
+    public void leaveTheBay(GameObject swimmer)
+    {
+        --currentSwimmer;
+        AllSwimmers.Remove(swimmer);
     }
 }

@@ -4,24 +4,52 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
+    public static bool onSomething;
     public GameObject LeftPoint;
     public GameObject RightPoint;
+    public GameObject UpPoint;
+    public GameObject DownPoint;
 
-    Vector3 VectorBetweenPoints;
+    Vector3 VectorBetweenPointsX;
+    Vector3 VectorBetweenPointsY;
 
-    float CurrentPos = 0.5f;
-    float speed = 0.2f;
+    float CurrentPosX = 0.5f;
+    float CurrentPosY = 0.5f;
+    float speed = 0.1f;
 
     bool isTouching;
+
+    GameObject ObjectUnderMouse;
+
+    public GameObject SwimmerWindow;
+
+    public AudioSource BeachSound;
     // Start is called before the first frame update
     void Start()
     {
-        VectorBetweenPoints = RightPoint.transform.position - LeftPoint.transform.position;
+        VectorBetweenPointsX = RightPoint.transform.position - LeftPoint.transform.position;
+        VectorBetweenPointsY = UpPoint.transform.position - DownPoint.transform.position;
+        Debug.Log(VectorBetweenPointsX);
+        Debug.Log(VectorBetweenPointsY);
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Le ray cast    
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray,out hit))
+        {
+            //Debug.Log(hit.collider.name);
+            ObjectUnderMouse = hit.collider.gameObject;
+        }
+        else
+        {
+            ObjectUnderMouse = null;
+        }
+
+        // test si mobile ou PC
         if (Application.platform == RuntimePlatform.Android && Application.platform == RuntimePlatform.IPhonePlayer)
         {
             TestTouch();
@@ -31,6 +59,11 @@ public class CameraScript : MonoBehaviour
             TestClick();
             //Debug.Log(isTouching);
         }
+
+        //Debug.Log(CurrentPosY);
+        BeachSound.volume = CurrentPosY-0.2f;
+        GetComponent<AudioSource>().volume = 1 - CurrentPosY-0.30f;
+        //Camera qui bouge
         TestCameraMove();
         MoveCamera();
     }
@@ -39,9 +72,14 @@ public class CameraScript : MonoBehaviour
     //Test click sur ordi
     void TestClick()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && ((ObjectUnderMouse && (ObjectUnderMouse.tag == "Water" || ObjectUnderMouse.tag == "Floor")) || ObjectUnderMouse == null))
         {
+            //SwimmerWindow.SetActive(false);
             isTouching = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse0) && (ObjectUnderMouse && ObjectUnderMouse.tag == "Swimmer" ))
+        {
+            ShowSwimmerStat(ObjectUnderMouse);
         }
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
@@ -70,14 +108,27 @@ public class CameraScript : MonoBehaviour
             if (Input.GetAxis("Mouse X") != 0)//
             {
                 //Debug.Log(Input.GetAxis("Mouse X"));
-                if(Input.GetAxis("Mouse X") > 0 && CurrentPos > 0)
+                if(Input.GetAxis("Mouse X") > 0 && CurrentPosX > 0)
                 {
-                    CurrentPos -= Input.GetAxis("Mouse X") * speed;
+                    CurrentPosX -= Input.GetAxis("Mouse X") * speed;
                 }
-                if (Input.GetAxis("Mouse X") < 0 && CurrentPos < 1)
+                if (Input.GetAxis("Mouse X") < 0 && CurrentPosX < 1)
                 {
-                    CurrentPos -= Input.GetAxis("Mouse X") * speed;
+                    CurrentPosX -= Input.GetAxis("Mouse X") * speed;
                 }
+            }
+            if (Input.GetAxis("Mouse Y") != 0)//
+            {
+                //Debug.Log(Input.GetAxis("Mouse X"));
+                if (Input.GetAxis("Mouse Y") > 0 && CurrentPosY > 0)
+                {
+                    CurrentPosY -= Input.GetAxis("Mouse Y") * speed;
+                }
+                if (Input.GetAxis("Mouse Y") < 0 && CurrentPosY < 1)
+                {
+                    CurrentPosY -= Input.GetAxis("Mouse Y") * speed;
+                }
+               //Debug.Log(Input.GetAxis("Mouse Y"));
             }
             if (Input.touchCount > 0)
             {
@@ -93,8 +144,13 @@ public class CameraScript : MonoBehaviour
     }
     void MoveCamera()
     {
-        Vector3 result = LeftPoint.transform.position + (VectorBetweenPoints * CurrentPos);
-        transform.position = new Vector3(result.x-3000, transform.position.y, transform.position.z);
+        Vector3 result = (LeftPoint.transform.position + (VectorBetweenPointsX * CurrentPosX)) + (DownPoint.transform.position + (VectorBetweenPointsY * CurrentPosY));
+        transform.position = new Vector3(result.x, transform.position.y, result.z-25);
+    }
+    void ShowSwimmerStat(GameObject swimmer)
+    {
+        SwimmerWindow.SetActive(true);
+        SwimmerWindow.GetComponent<SwimmerWindow>().swimmer = swimmer;
     }
 }
 
