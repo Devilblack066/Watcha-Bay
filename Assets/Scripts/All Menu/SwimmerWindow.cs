@@ -1,11 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SwimmerWindow : MonoBehaviour
 {
     public GameObject swimmer;
     public GameObject myCamera;
+    public Slider mySliderHappiness;
+    public Slider mySliderHunger;
+    public Slider mySliderThirst;
+    public Slider mySliderEntertainment;
+    public Slider mySliderTiredness;
+    public Slider mySliderHygiene;
+    public float result;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,14 +21,51 @@ public class SwimmerWindow : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         if (swimmer && swimmer.tag == "Swimmer")
         {
+            ANeed[] tab_needs = swimmer.GetComponent<Swimmer>().GetmyNeeds();
+            //ANeed[] tab_needs = swimmer.GetComponent<Swimmer>().myNeeds;
             //Debug.Log("????");
             transform.position = swimmer.transform.position;
-            //transform.LookAt(myCamera.transform);
+            // transform.LookAt(myCamera.transform);
             //Debug.Log(transform.position);
+            foreach (ANeed need in tab_needs)
+            {
+                result = ((float)need.Value / (float)need.MaxValue);
+                tab_needs = swimmer.GetComponent<Swimmer>().GetmyNeeds();
+                //Debug.Log("Nom:" + need.Name);
+                switch (need.Name)
+                {
+                    case "Happiness":
+                        mySliderHappiness.value = result;
+                        //Debug.Log("Happiness a pour valeur " + need.Value + "/" + need.MaxValue);
+                        break;
+                    case "Hunger":
+                        mySliderHunger.value = result;
+                        //Debug.Log("Hunger a pour valeur " + need.Value + "/" + need.MaxValue);
+                        break;
+                    case "Thrist":
+                        mySliderThirst.value = result;
+                        //Debug.Log("Thrist a pour valeur " + need.Value + "/" + need.MaxValue);
+                        break;
+                    case "Entertainment":
+                        mySliderEntertainment.value = result;
+                        //Debug.Log("Entertainment a pour valeur " + need.Value + "/" + need.MaxValue);
+                        break;
+                    case "Tiredness":
+                        mySliderTiredness.value = result;
+                        //Debug.Log("Tiredness a pour valeur " + need.Value + "/" + need.MaxValue);
+                        break;
+                    case "Hygiene":
+                        mySliderHygiene.value = result;
+                        break;
+                    default:
+                        //Debug.Log("Valeur non récupérée: "+ result);
+                        break;
+                }
+            }
         }
     }
 }

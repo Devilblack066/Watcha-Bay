@@ -24,6 +24,11 @@ public class Swimmer : MonoBehaviour
         MoveTo();
     }
 
+    public ANeed[] GetmyNeeds()
+    {
+        return (myNeeds);
+    }
+
     // Update is called once per frame
     void Update()
     {
