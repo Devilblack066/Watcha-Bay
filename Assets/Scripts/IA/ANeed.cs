@@ -33,7 +33,8 @@ public class ANeed : MonoBehaviour
                             new ANeed(typeOfNeed.Hunger,"Hunger",100,100),
                             new ANeed(typeOfNeed.Thirst,"Thrist",100,100),
                             new ANeed(typeOfNeed.Entertainment,"Entertainment",100,100),
-                            new ANeed(typeOfNeed.Tiredness,"Tiredness",100,100)};
+                            new ANeed(typeOfNeed.Tiredness,"Tiredness",100,100),
+                            new ANeed(typeOfNeed.Hygiene,"Tiredness",100,100)};
     }
 }
 
@@ -43,5 +44,6 @@ public enum typeOfNeed
     Hunger,
     Thirst,
     Entertainment,
-    Tiredness
+    Tiredness,
+    Hygiene
 }

@@ -9,6 +9,8 @@ public class Swimmer : MonoBehaviour
     NavMeshAgent myAgent;
     ANeed[] myNeeds;
     Vector3 Destination;
+
+    public bool isHighLighted = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,10 +32,10 @@ public class Swimmer : MonoBehaviour
             MoveTo();
         }
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        /*if(Input.GetKeyDown(KeyCode.Space))
         {
             showNeeds();
-        }
+        }*/
     }
     void MoveTo()
     {

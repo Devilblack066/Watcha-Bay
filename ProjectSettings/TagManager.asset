@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - batiments
+  - Water
+  - Floor
+  - Swimmer
   layers:
   - Default
   - TransparentFX

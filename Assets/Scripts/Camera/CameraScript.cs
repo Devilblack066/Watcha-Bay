@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
+    public static bool onSomething;
     public GameObject LeftPoint;
     public GameObject RightPoint;
 
@@ -13,6 +14,10 @@ public class CameraScript : MonoBehaviour
     float speed = 0.2f;
 
     bool isTouching;
+
+    GameObject ObjectUnderMouse;
+
+    public GameObject SwimmerWindow;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +27,20 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Le ray cast    
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray,out hit))
+        {
+            //Debug.Log(hit.collider.name);
+            ObjectUnderMouse = hit.collider.gameObject;
+        }
+        else
+        {
+            ObjectUnderMouse = null;
+        }
+
+        // test si mobile ou PC
         if (Application.platform == RuntimePlatform.Android && Application.platform == RuntimePlatform.IPhonePlayer)
         {
             TestTouch();
@@ -31,6 +50,10 @@ public class CameraScript : MonoBehaviour
             TestClick();
             //Debug.Log(isTouching);
         }
+
+
+
+        //Camera qui bouge
         TestCameraMove();
         MoveCamera();
     }
@@ -39,9 +62,14 @@ public class CameraScript : MonoBehaviour
     //Test click sur ordi
     void TestClick()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && ((ObjectUnderMouse && (ObjectUnderMouse.tag == "Water" || ObjectUnderMouse.tag == "Floor")) || ObjectUnderMouse == null))
         {
+            //SwimmerWindow.SetActive(false);
             isTouching = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse0) && (ObjectUnderMouse && ObjectUnderMouse.tag == "Swimmer" ))
+        {
+            ShowSwimmerStat(ObjectUnderMouse);
         }
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
@@ -94,7 +122,12 @@ public class CameraScript : MonoBehaviour
     void MoveCamera()
     {
         Vector3 result = LeftPoint.transform.position + (VectorBetweenPoints * CurrentPos);
-        transform.position = new Vector3(result.x-3000, transform.position.y, transform.position.z);
+        transform.position = new Vector3(result.x-5000, transform.position.y, transform.position.z);
+    }
+    void ShowSwimmerStat(GameObject swimmer)
+    {
+        SwimmerWindow.SetActive(true);
+        SwimmerWindow.GetComponent<SwimmerWindow>().swimmer = swimmer;
     }
 }
 
