@@ -22,6 +22,8 @@ public class CameraScript : MonoBehaviour
     GameObject ObjectUnderMouse;
 
     public GameObject SwimmerWindow;
+
+    public AudioSource BeachSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -59,7 +61,8 @@ public class CameraScript : MonoBehaviour
         }
 
         //Debug.Log(CurrentPosY);
-
+        BeachSound.volume = CurrentPosY-0.2f;
+        GetComponent<AudioSource>().volume = 1 - CurrentPosY-0.30f;
         //Camera qui bouge
         TestCameraMove();
         MoveCamera();
@@ -142,7 +145,7 @@ public class CameraScript : MonoBehaviour
     void MoveCamera()
     {
         Vector3 result = (LeftPoint.transform.position + (VectorBetweenPointsX * CurrentPosX)) + (DownPoint.transform.position + (VectorBetweenPointsY * CurrentPosY));
-        transform.position = new Vector3(result.x-25, transform.position.y, result.z - 25);
+        transform.position = new Vector3(result.x, transform.position.y, result.z-25);
     }
     void ShowSwimmerStat(GameObject swimmer)
     {
