@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SwimmerWindow : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class SwimmerWindow : MonoBehaviour
     public Slider mySliderEntertainment;
     public Slider mySliderTiredness;
     public Slider mySliderHygiene;
+
+    public TextMeshProUGUI lastName;
+    public TextMeshProUGUI firstName;
+
     public float result;
     // Start is called before the first frame update
     void Start()
@@ -26,6 +31,9 @@ public class SwimmerWindow : MonoBehaviour
         if (swimmer && swimmer.tag == "Swimmer")
         {
             ANeed[] tab_needs = swimmer.GetComponent<Swimmer>().GetmyNeeds();
+
+            lastName.text = swimmer.GetComponent<Swimmer>().getLastName();
+            firstName.text = swimmer.GetComponent<Swimmer>().getFirstName();
             //ANeed[] tab_needs = swimmer.GetComponent<Swimmer>().myNeeds;
             //Debug.Log("????");
             //transform.position = swimmer.transform.position;
@@ -66,6 +74,10 @@ public class SwimmerWindow : MonoBehaviour
                         break;
                 }
             }
+        }
+        else if (swimmer == null && gameObject.active == true)
+        {
+            gameObject.SetActive(false);
         }
     }
     public void HideMenu()

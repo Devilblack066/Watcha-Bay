@@ -13,9 +13,11 @@ public class CameraScript : MonoBehaviour
     Vector3 VectorBetweenPointsX;
     Vector3 VectorBetweenPointsY;
 
-    float CurrentPosX = 0.5f;
-    float CurrentPosY = 0.5f;
-    float speed = 0.1f;
+    float CurrentPosX;
+    float CurrentPosY;
+    float speed = 0.05f;
+
+    
 
     bool isTouching;
 
@@ -27,6 +29,8 @@ public class CameraScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        CurrentPosX = 0.5f;
+        CurrentPosY = 0.5f;
         VectorBetweenPointsX = RightPoint.transform.position - LeftPoint.transform.position;
         VectorBetweenPointsY = UpPoint.transform.position - DownPoint.transform.position;
         Debug.Log(VectorBetweenPointsX);
@@ -52,7 +56,7 @@ public class CameraScript : MonoBehaviour
         // test si mobile ou PC
         if (Application.platform == RuntimePlatform.Android && Application.platform == RuntimePlatform.IPhonePlayer)
         {
-            TestTouch();
+            //TestTouch();
         }
         else
         {
@@ -134,9 +138,9 @@ public class CameraScript : MonoBehaviour
             {
                 if (Input.GetTouch(0).phase == TouchPhase.Moved)
                 {
-                    Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
-                    Debug.Log(touchDeltaPosition);
-                    touchDeltaPosition = new Vector2(touchDeltaPosition.x, touchDeltaPosition.y);
+                    //Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
+                    //Debug.Log(touchDeltaPosition);
+                    //touchDeltaPosition = new Vector2(touchDeltaPosition.x, touchDeltaPosition.y);
                     
                 }
             }

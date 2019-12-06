@@ -7,6 +7,9 @@ public class Swimmer : MonoBehaviour
 {
     public BayStats bayStats;
 
+    string firstName;
+    string lastName;
+
     NavMeshAgent myAgent;
     ANeed[] myNeeds;
     Vector3 Destination;
@@ -18,8 +21,13 @@ public class Swimmer : MonoBehaviour
         //myPatrol = GetComponent<PatrolScript>();
         myAgent  = GetComponent<NavMeshAgent>();
         myAgent.updateRotation = false;
+
+        lastName = generalFunctions.allLastNames.ToArray()[Random.Range(0,generalFunctions.allLastNames.Count)];
+        firstName = generalFunctions.allFirstNames.ToArray()[Random.Range(0, generalFunctions.allFirstNames.Count)];
+        gameObject.name = lastName+" "+firstName;
+
         myNeeds = ANeed.generateBasicalNeeds();
-        StartCoroutine(decreaseRessByTime(5.0f));
+        StartCoroutine(decreaseRessByTime(4.0f));
         Destination = bayStats.FindAPointOnBeach();
         MoveTo();
     }
@@ -63,7 +71,7 @@ public class Swimmer : MonoBehaviour
     }
 
 
-    IEnumerator decreaseRessByTime(float delay = 5.0f)
+    IEnumerator decreaseRessByTime(float delay = 4.0f)
     {
         while (true)
         {
@@ -88,4 +96,7 @@ public class Swimmer : MonoBehaviour
         bayStats.leaveTheBay(gameObject);
         Destroy(gameObject);
     }
+
+    public string getLastName() { return lastName; }
+    public string getFirstName() { return firstName; }
 }
