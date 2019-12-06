@@ -101,4 +101,15 @@ public class BayStats : MonoBehaviour
         --currentSwimmer;
         AllSwimmers.Remove(swimmer);
     }
+
+    public int[] getSwimmerNumber()
+    {
+        int[] swimmer_number = new int[] { currentSwimmer, maxSwimmer };
+        return (swimmer_number);
+    }
+
+    public int getUserMoney()
+    {
+        return (currentMoney);
+    }
 }
