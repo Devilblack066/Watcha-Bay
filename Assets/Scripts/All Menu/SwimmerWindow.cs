@@ -28,7 +28,7 @@ public class SwimmerWindow : MonoBehaviour
             ANeed[] tab_needs = swimmer.GetComponent<Swimmer>().GetmyNeeds();
             //ANeed[] tab_needs = swimmer.GetComponent<Swimmer>().myNeeds;
             //Debug.Log("????");
-            transform.position = swimmer.transform.position;
+            //transform.position = swimmer.transform.position;
             // transform.LookAt(myCamera.transform);
             //Debug.Log(transform.position);
             foreach (ANeed need in tab_needs)
