@@ -68,4 +68,8 @@ public class SwimmerWindow : MonoBehaviour
             }
         }
     }
+    public void HideMenu()
+    {
+        gameObject.SetActive(false);
+    }
 }
