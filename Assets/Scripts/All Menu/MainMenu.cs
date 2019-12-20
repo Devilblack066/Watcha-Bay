@@ -15,4 +15,6 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Application Fermée");
         Application.Quit();
     }
+
+    public static LoadingScene Start_game;
 }
