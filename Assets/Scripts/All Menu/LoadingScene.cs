@@ -30,8 +30,6 @@ public class LoadingScene : MonoBehaviour
 
     private IEnumerator ShowLoadingView()
     {
-        mainMenu.SetActive(false);
-
         InstatiateLoadingView();
 
         _backgroundImage.color = new Color(0, 0, 0, 0);
@@ -41,9 +39,10 @@ public class LoadingScene : MonoBehaviour
             yield return new WaitForSeconds(timeToWait);
             _currentView += 0.05f;
 
-            _backgroundImage.color = new Color(0, 0, 0, _currentView);
+            _backgroundImage.color = new Color(0, 0, 255, _currentView);
             _text.color = new Color(255, 201, 0, _currentView);
         }
+        mainMenu.SetActive(false);
         DoAction();
     }
 
@@ -54,7 +53,7 @@ public class LoadingScene : MonoBehaviour
             yield return new WaitForSeconds(timeToWait);
             _currentView -= 0.05f;
 
-            _backgroundImage.color = new Color(0, 0, 0, _currentView);
+            _backgroundImage.color = new Color(0, 0, 255, _currentView);
             _text.color = new Color(255, 201, 0, _currentView);
         }
         Destroy(gameObject);
