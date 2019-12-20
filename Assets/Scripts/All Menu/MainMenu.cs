@@ -18,3 +18,8 @@ public class MainMenu : MonoBehaviour
 
     public static LoadingScene Start_game;
 }
+
+public enum LoadingType
+{
+    None, Game, MainMenu
+}
