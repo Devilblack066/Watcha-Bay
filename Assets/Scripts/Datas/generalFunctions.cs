@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class generalFunctions : MonoBehaviour
 {
     static public List<string> allLastNames;
@@ -10,6 +11,7 @@ public class generalFunctions : MonoBehaviour
     void Start()
     {
         InitNames();
+        //Debug.Log(Application.persistentDataPath+ "/StreamingAssets/");
     }
 
     // Update is called once per frame
@@ -22,7 +24,26 @@ public class generalFunctions : MonoBehaviour
     {
         allLastNames = new List<string>();
         allFirstNames = new List<string>();
-        string fileData = System.IO.File.ReadAllText("./Assets/Scripts/Datas/listOfNames.csv");
+
+
+        TextAsset file = Resources.Load("listOfNames") as TextAsset;
+        string fileData = file.text;
+        //string pathCSVNames = Application.dataPath + "/StreamingAssets/listOfNames.csv";
+
+
+
+
+        /*if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+            WWW reader = new WWW(pathCSVNames);
+            while (!reader.isDone) { }
+            fileData = reader.text;
+        }
+        else
+        {
+            fileData = System.IO.File.ReadAllText(Application.persistentDataPath + "/listOfNames.csv");
+        }*/
+
         string[] lines = fileData.Split('\n');
         for (int i = 0 ; i < lines.Length ; ++i)
         {

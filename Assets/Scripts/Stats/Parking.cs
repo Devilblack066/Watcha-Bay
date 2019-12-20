@@ -14,6 +14,7 @@ public class Parking : MonoBehaviour
     {
         theBay = GetComponentInParent<BayStats>();
         StartCoroutine(spawnSwimmers(4.0f));
+        //Debug.Log(" tu es dans le start");
     }
 
     // Update is called once per frame
@@ -25,6 +26,7 @@ public class Parking : MonoBehaviour
     {
         while (true)
         {
+            //Debug.Log(" tu es dans le while");
             if (theBay.canAddSwimmer())
             {
                 

@@ -779,6 +779,7 @@ GameObject:
   - component: {fileID: 188464914}
   - component: {fileID: 188464913}
   - component: {fileID: 188464912}
+  - component: {fileID: 188464915}
   m_Layer: 5
   m_Name: Button_Jouer
   m_TagString: Untagged
@@ -848,7 +849,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 188464913}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 188464915}
+        m_MethodName: LoadGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &188464913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -885,6 +897,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 188464910}
   m_CullTransparentMesh: 0
+--- !u!114 &188464915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188464910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 401d27d9518902a428625258f147bc9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &219552188
 GameObject:
   m_ObjectHideFlags: 0
@@ -2907,7 +2931,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: max
 --- !u!222 &635292507
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3581,7 +3605,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: pop
 --- !u!222 &811302663
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3609,7 +3633,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &813702355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3878,7 +3902,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &823176285
 Transform:
   m_ObjectHideFlags: 0
@@ -4865,6 +4889,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1039032326}
+  - component: {fileID: 1039032327}
   m_Layer: 0
   m_Name: All Menu
   m_TagString: Untagged
@@ -4888,6 +4913,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1039032327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039032325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2399b869c18848a41b73219ee893ec90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadingPrefab: {fileID: 2161686647501707073, guid: 59ea26929459e964aa2083ab5d08d4f2,
+    type: 3}
+  mainMenu: {fileID: 813702354}
+  timeToWait: 0.01
 --- !u!1 &1053439162
 GameObject:
   m_ObjectHideFlags: 0
@@ -5412,7 +5453,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1216851329
 RectTransform:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ TagManager:
   - Water
   - Floor
   - Swimmer
+  - UI
   layers:
   - Default
   - TransparentFX
