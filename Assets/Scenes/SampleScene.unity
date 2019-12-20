@@ -473,7 +473,7 @@ RectTransform:
   m_LocalScale: {x: 1.4043223, y: 1.4916698, z: 1}
   m_Children: []
   m_Father: {fileID: 1420222550}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -1878,7 +1878,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 3.7616967e-37, z: 1.82954e-40, w: 3.8026e-41}
+  m_BoundingSphereOverride: {x: -4.336941e-19, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -2882,7 +2882,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -2897,8 +2897,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 141309686}
   - {fileID: 1985000459}
+  - {fileID: 141309686}
   - {fileID: 1352910327}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -3596,7 +3596,9 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6514559084254602001, guid: 67ffd4ce7eb3ff345bcb643fc3a217e3, type: 3}
+    - {fileID: 1927797595883026, guid: 67ffd4ce7eb3ff345bcb643fc3a217e3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 67ffd4ce7eb3ff345bcb643fc3a217e3, type: 3}
 --- !u!1 &1587030590
 GameObject:
@@ -4338,7 +4340,6 @@ GameObject:
   - component: {fileID: 1985000459}
   - component: {fileID: 1985000461}
   - component: {fileID: 1985000460}
-  - component: {fileID: 1985000462}
   m_Layer: 5
   m_Name: MENUBAR
   m_TagString: UI
@@ -4363,7 +4364,7 @@ RectTransform:
   - {fileID: 1039984}
   - {fileID: 1448454182}
   m_Father: {fileID: 1420222550}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -4403,27 +4404,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1985000458}
   m_CullTransparentMesh: 0
---- !u!223 &1985000462
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1985000458}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 2
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_TargetDisplay: 0
 --- !u!1001 &1988069221
 PrefabInstance:
   m_ObjectHideFlags: 0

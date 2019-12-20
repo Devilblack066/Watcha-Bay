@@ -23,6 +23,7 @@ public class CameraScript : MonoBehaviour
     public GraphicRaycaster m_Raycaster;
     public PointerEventData m_PointerEventData;
     public EventSystem m_EventSystem;
+    bool onUI = false;
 
     bool isTouching;
 
@@ -58,13 +59,8 @@ public class CameraScript : MonoBehaviour
         //Raycast using the Graphics Raycaster and mouse click position
         m_Raycaster.Raycast(m_PointerEventData, results);
 
-        //For every result returned, output the name of the GameObject on the Canvas hit by the Ray
-        foreach (RaycastResult result in results)
-        {
-            Debug.Log("Hit " + result.gameObject.name);
-        }
-
-
+        if(results.Count > 0)onUI = true;
+        else onUI = false;
         // Le ray cast    
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -101,16 +97,13 @@ public class CameraScript : MonoBehaviour
     //Test click sur ordi
     void TestClick()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && ((ObjectUnderMouse &&  ObjectUnderMouse.tag == "UI")))
-        {
-
-        }
+        if (onUI) return;
         else if (Input.GetKeyDown(KeyCode.Mouse0) && ((ObjectUnderMouse && (ObjectUnderMouse.tag == "Water" || ObjectUnderMouse.tag == "Floor")) || ObjectUnderMouse == null))
         {
             //SwimmerWindow.SetActive(false);
             isTouching = true;
         }
-        else if (Input.GetKeyDown(KeyCode.Mouse0) && (ObjectUnderMouse && ObjectUnderMouse.tag == "Swimmer" ))
+        else if (Input.GetKeyDown(KeyCode.Mouse0) && (ObjectUnderMouse && ObjectUnderMouse.tag == "Swimmer"))
         {
             ShowSwimmerStat(ObjectUnderMouse);
         }
