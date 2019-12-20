@@ -28,11 +28,11 @@ public class DeleteAtStart : MonoBehaviour
     }
         private void OnTriggerEnter(Collider other) {
 
-        if(other.gameObject.CompareTag("batiments") && isAlColided == 0)
+        /*if(other.gameObject.CompareTag("batiments") && isAlColided == 0)
         {
             Destroy(obj);
         }
-        isAlColided = 1;
+        isAlColided = 1;*/
     }
     
 }

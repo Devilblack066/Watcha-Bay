@@ -207,7 +207,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 478245587}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.03, y: 0, z: 4.97}
+  m_LocalPosition: {x: 5.97, y: 0, z: 6.04}
   m_LocalScale: {x: 1.2, y: 1, z: 1.2}
   m_Children: []
   m_Father: {fileID: 0}
@@ -290,7 +290,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 784063952}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 3.8, y: 13.07, z: 4.4}
+  m_LocalPosition: {x: 4.94, y: 13.07, z: 5.73}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -325,6 +325,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c0b1759f24a63c4591b2312b004c1c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actualbat: {fileID: 0}
+  objetinst: {fileID: 0}
+  xtoint: 0
+  ytoint: 0
+  gd: {fileID: 0}
   batiments: {fileID: 2631003515533061020, guid: 6f7813b5911d5df438f7a170ac9272f9,
     type: 3}
 --- !u!4 &1980247100
@@ -335,7 +340,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1980247098}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.1756325, y: -10.73026, z: 19.21344}
+  m_LocalPosition: {x: 5.26, y: -15.83, z: 19.21344}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -447,7 +452,7 @@ PrefabInstance:
     - target: {fileID: 672021237254142060, guid: eada58c650820a548a3e69793f9a87ed,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 672021237254142060, guid: eada58c650820a548a3e69793f9a87ed,
         type: 3}
@@ -457,7 +462,7 @@ PrefabInstance:
     - target: {fileID: 672021237254142060, guid: eada58c650820a548a3e69793f9a87ed,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 672021237254142060, guid: eada58c650820a548a3e69793f9a87ed,
         type: 3}
@@ -507,12 +512,17 @@ PrefabInstance:
     - target: {fileID: 672021237254142355, guid: eada58c650820a548a3e69793f9a87ed,
         type: 3}
       propertyPath: gridWorldSizeX
-      value: 11
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 672021237254142355, guid: eada58c650820a548a3e69793f9a87ed,
         type: 3}
       propertyPath: gridWorldSizeY
-      value: 11
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 672021237254142355, guid: eada58c650820a548a3e69793f9a87ed,
+        type: 3}
+      propertyPath: x1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eada58c650820a548a3e69793f9a87ed, type: 3}
