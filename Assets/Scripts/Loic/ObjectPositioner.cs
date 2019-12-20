@@ -29,7 +29,7 @@ public class ObjectPositioner : MonoBehaviour
     private void Awake()
     {
         gd = FindObjectOfType<GridScript>();
-        WriteString();
+        //WriteString();
     }
 
     public void Update()
@@ -52,28 +52,28 @@ public class ObjectPositioner : MonoBehaviour
 
 
         var finalPosition = gd.GetNearestPointOnGrid(clickPoint);
-                xtoint = (int) finalPosition.x;
-                ytoint = (int) finalPosition.z;
+                xtoint = gd.GridTabVal.GetLength(1) - (int) finalPosition.z-1;
+                ytoint = (int) finalPosition.x;
 
         //Debug.Log(xtoint);
        //Debug.Log(ytoint);
-        if (TestPossible(batiment, xtoint, ytoint) == false ) return;
+        /*if (TestPossible(batiment, xtoint, ytoint) == false ) return;
         else
         {
-            
+            */
             objetinst = Instantiate(batiment, clickPoint, Quaternion.identity);
             objetinst.transform.position = finalPosition;
             SpawnBatGridTab(objetinst, xtoint, ytoint);
             WriteString();
             actualbat = objetinst;
-        }
+        //}
     }
 
 
     public void SpawnBatGridTab(GameObject go,int xtoint , int ytoint)
     {
-        var objX= (int)Mathf.Ceil(go.transform.localScale.x/2);
-        var objY= (int)Mathf.Ceil(go.transform.localScale.z/2);
+        var objY= (int)Mathf.Round(go.transform.localScale.x/2);
+        var objX= (int)Mathf.Round(go.transform.localScale.z/2);
 
         //Debug.Log((int)Mathf.Round(xtoint+objX));
         //Debug.Log((int)Mathf.Round(ytoint+objY));
@@ -93,9 +93,9 @@ public class ObjectPositioner : MonoBehaviour
             }
             
         }*/
-        for (int i = 0; i<objX;++i)
+        for (int i = 0; i<=objX;++i)
         {
-            for (int j = 0; j<objY;++j)
+            for (int j = 0; j<=objY;++j)
             {
                 gd.GridTabVal[xtoint + i, ytoint + j] = 1.0f;
                 gd.GridTabVal[xtoint - i, ytoint + j] = 1.0f;
@@ -111,8 +111,8 @@ public class ObjectPositioner : MonoBehaviour
         var objX = (int)Mathf.Ceil(go.transform.localScale.x / 2);
         var objY = (int)Mathf.Ceil(go.transform.localScale.z / 2);
 
-        Debug.Log(objX); Debug.Log(objY);
-        Debug.Log(xtoint); Debug.Log(ytoint);
+        //Debug.Log(objX); Debug.Log(objY);
+        //Debug.Log(xtoint); Debug.Log(ytoint);
         //Debug.Log((int)Mathf.Round(xtoint+objX));
         //Debug.Log((int)Mathf.Round(ytoint+objY));
 
@@ -173,13 +173,13 @@ public class ObjectPositioner : MonoBehaviour
     }
     void WriteString()
     {
-        string path = "Assets/Resources/test.txt";
+        //string path = "Assets/Resources/test.txt";
 
         /*File.Delete(path);
         File.Create(path);*/
 
         //Write some text to the test.txt file
-        StreamWriter writer = new StreamWriter(path, true);
+        //StreamWriter writer = new StreamWriter(path, true);
         for (int i = 0; i<gd.GridTabVal.GetLength(0);++i)
         {
             string chaine = "";
@@ -187,10 +187,10 @@ public class ObjectPositioner : MonoBehaviour
             {
                 chaine += gd.GridTabVal[i,y].ToString();
             }
-            writer.WriteLine(chaine + "\n");
+            Debug.Log(chaine);
         }
-        writer.WriteLine("\n\n\n");
-        writer.Close();
+        //writer.WriteLine("\n\n\n");
+        //writer.Close();
 
         //Re-import the file to update the reference in the editor
         /*AssetDatabase.ImportAsset(path);
