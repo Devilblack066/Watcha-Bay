@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+
 
 public class CameraScript : MonoBehaviour
 {
@@ -17,7 +20,9 @@ public class CameraScript : MonoBehaviour
     float CurrentPosY;
     float speed = 0.05f;
 
-    
+    public GraphicRaycaster m_Raycaster;
+    public PointerEventData m_PointerEventData;
+    public EventSystem m_EventSystem;
 
     bool isTouching;
 
@@ -30,16 +35,36 @@ public class CameraScript : MonoBehaviour
     void Start()
     {
         CurrentPosX = 0.5f;
-        CurrentPosY = 0.5f;
+        CurrentPosY = 0.0f;
         VectorBetweenPointsX = RightPoint.transform.position - LeftPoint.transform.position;
         VectorBetweenPointsY = UpPoint.transform.position - DownPoint.transform.position;
-        Debug.Log(VectorBetweenPointsX);
-        Debug.Log(VectorBetweenPointsY);
+
+        //m_Raycaster = GetComponent<GraphicRaycaster>();
+        //Debug.Log(VectorBetweenPointsX);
+        //Debug.Log(VectorBetweenPointsY);
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Create a list of Raycast Results
+
+        m_PointerEventData = new PointerEventData(m_EventSystem);
+        //Set the Pointer Event Position to that of the mouse position
+        m_PointerEventData.position = Input.mousePosition;
+
+        List<RaycastResult> results = new List<RaycastResult>();
+
+        //Raycast using the Graphics Raycaster and mouse click position
+        m_Raycaster.Raycast(m_PointerEventData, results);
+
+        //For every result returned, output the name of the GameObject on the Canvas hit by the Ray
+        foreach (RaycastResult result in results)
+        {
+            Debug.Log("Hit " + result.gameObject.name);
+        }
+
+
         // Le ray cast    
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -76,12 +101,16 @@ public class CameraScript : MonoBehaviour
     //Test click sur ordi
     void TestClick()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && ((ObjectUnderMouse && (ObjectUnderMouse.tag == "Water" || ObjectUnderMouse.tag == "Floor")) || ObjectUnderMouse == null))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && ((ObjectUnderMouse &&  ObjectUnderMouse.tag == "UI")))
+        {
+
+        }
+        else if (Input.GetKeyDown(KeyCode.Mouse0) && ((ObjectUnderMouse && (ObjectUnderMouse.tag == "Water" || ObjectUnderMouse.tag == "Floor")) || ObjectUnderMouse == null))
         {
             //SwimmerWindow.SetActive(false);
             isTouching = true;
         }
-        if (Input.GetKeyDown(KeyCode.Mouse0) && (ObjectUnderMouse && ObjectUnderMouse.tag == "Swimmer" ))
+        else if (Input.GetKeyDown(KeyCode.Mouse0) && (ObjectUnderMouse && ObjectUnderMouse.tag == "Swimmer" ))
         {
             ShowSwimmerStat(ObjectUnderMouse);
         }

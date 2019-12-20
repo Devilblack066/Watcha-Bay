@@ -22,6 +22,8 @@ public class Swimmer : MonoBehaviour
         myAgent  = GetComponent<NavMeshAgent>();
         myAgent.updateRotation = false;
 
+
+        //Debug.Log(generalFunctions.allLastNames.Count);
         lastName = generalFunctions.allLastNames.ToArray()[Random.Range(0,generalFunctions.allLastNames.Count)];
         firstName = generalFunctions.allFirstNames.ToArray()[Random.Range(0, generalFunctions.allFirstNames.Count)];
         gameObject.name = lastName+" "+firstName;
