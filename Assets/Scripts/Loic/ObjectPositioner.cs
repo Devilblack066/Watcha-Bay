@@ -57,16 +57,16 @@ public class ObjectPositioner : MonoBehaviour
 
         //Debug.Log(xtoint);
        //Debug.Log(ytoint);
-        /*if (TestPossible(batiment, xtoint, ytoint) == false ) return;
+        if (TestPossible(batiment, xtoint, ytoint) == false ) return;
         else
         {
-            */
+            
             objetinst = Instantiate(batiment, clickPoint, Quaternion.identity);
             objetinst.transform.position = finalPosition;
             SpawnBatGridTab(objetinst, xtoint, ytoint);
-            WriteString();
+            ShowMatrice0And1();
             actualbat = objetinst;
-        //}
+        }
     }
 
 
@@ -108,8 +108,8 @@ public class ObjectPositioner : MonoBehaviour
 
     public bool TestPossible(GameObject go, int xtoint, int ytoint)
     {
-        var objX = (int)Mathf.Ceil(go.transform.localScale.x / 2);
-        var objY = (int)Mathf.Ceil(go.transform.localScale.z / 2);
+        var objY = (int)Mathf.Round(go.transform.localScale.x / 2);
+        var objX = (int)Mathf.Round(go.transform.localScale.z / 2);
 
         //Debug.Log(objX); Debug.Log(objY);
         //Debug.Log(xtoint); Debug.Log(ytoint);
@@ -128,10 +128,10 @@ public class ObjectPositioner : MonoBehaviour
                         gd.GridTabVal[i,ytoint+z] = 1.0f;
                         gd.GridTabVal[i,ytoint-z] = 1.0f;
                     }
-            }
-            
+            }  
         }*/
-        if (gd.GridTabVal.GetLength(0) < objX + xtoint || gd.GridTabVal.GetLength(1) < objY + ytoint || xtoint - objX < 0 || ytoint - objY < 0)
+
+        if (gd.GridTabVal.GetLength(0) <= objX + xtoint || gd.GridTabVal.GetLength(1) <= objY + ytoint || xtoint - objX < 0 || ytoint - objY < 0)
         {
             Debug.Log("ça a pété");
             Debug.Log(gd.GridTabVal.GetLength(0));
@@ -139,9 +139,9 @@ public class ObjectPositioner : MonoBehaviour
             return false;
         }
 
-        for (int i = 0; i < objX; ++i)
+        for (int i = 0; i <= objX; ++i)
         {
-            for (int j = 0; j < objY; ++j)
+            for (int j = 0; j <= objY; ++j)
             {
                 /*gd.GridTabVal[xtoint + i, ytoint + j] = 1.0f;
                 gd.GridTabVal[xtoint - i, ytoint + j] = 1.0f;
@@ -171,7 +171,7 @@ public class ObjectPositioner : MonoBehaviour
         }
         return true;
     }
-    void WriteString()
+    void ShowMatrice0And1()
     {
         //string path = "Assets/Resources/test.txt";
 
