@@ -28,13 +28,13 @@ public class ObjectPositioner : MonoBehaviour
 
     private void Awake()
     {
-        gd = FindObjectOfType<GridScript>();
+       // gd = FindObjectOfType<GridScript>();
         //WriteString();
     }
 
     public void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        /*if (Input.GetMouseButtonDown(0))
         {
             
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -43,7 +43,7 @@ public class ObjectPositioner : MonoBehaviour
             {
                     PlaceCubeNear(hitInfo.point,batiments);
             }
-        }
+        }*/
     }
  
     public void PlaceCubeNear(Vector3 clickPoint,GameObject batiment)

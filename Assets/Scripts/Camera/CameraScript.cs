@@ -7,6 +7,9 @@ using UnityEngine.EventSystems;
 
 public class CameraScript : MonoBehaviour
 {
+    public static bool inConstructionMode = false;
+    public ObjectPositioner myObjectPositioner;
+
     public static bool onSomething;
     public GameObject LeftPoint;
     public GameObject RightPoint;
@@ -40,6 +43,7 @@ public class CameraScript : MonoBehaviour
         VectorBetweenPointsX = RightPoint.transform.position - LeftPoint.transform.position;
         VectorBetweenPointsY = UpPoint.transform.position - DownPoint.transform.position;
 
+        myObjectPositioner = gameObject.GetComponent<ObjectPositioner>();
         //m_Raycaster = GetComponent<GraphicRaycaster>();
         //Debug.Log(VectorBetweenPointsX);
         //Debug.Log(VectorBetweenPointsY);
@@ -81,7 +85,7 @@ public class CameraScript : MonoBehaviour
         }
         else
         {
-            TestClick();
+            TestClick(hit.point);
             //Debug.Log(isTouching);
         }
 
@@ -95,9 +99,13 @@ public class CameraScript : MonoBehaviour
 
 
     //Test click sur ordi
-    void TestClick()
+    void TestClick(Vector3 hitpoint)
     {
         if (onUI) return;
+        if (inConstructionMode && myObjectPositioner.batiments != null && Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            myObjectPositioner.PlaceCubeNear(hitpoint, myObjectPositioner.batiments);
+        }
         else if (Input.GetKeyDown(KeyCode.Mouse0) && ((ObjectUnderMouse && (ObjectUnderMouse.tag == "Water" || ObjectUnderMouse.tag == "Floor")) || ObjectUnderMouse == null))
         {
             //SwimmerWindow.SetActive(false);
