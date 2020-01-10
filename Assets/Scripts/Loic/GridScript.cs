@@ -43,7 +43,7 @@ public class GridScript : MonoBehaviour
 
     void Awake()
     {
-         GridTabVal = new float [gridWorldSizeX, gridWorldSizeY];
+        GridTabVal = new float [gridWorldSizeX, gridWorldSizeY];
         GridTabPos = new Vector3[gridWorldSizeX*size,gridWorldSizeY*size];
 
         for (float x = 0; x < gridWorldSizeX; x += size)
