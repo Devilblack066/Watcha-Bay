@@ -2985,6 +2985,11 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2937174986782144099, guid: c4133c7d8f7dcc74da47e5cab5349830,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4133c7d8f7dcc74da47e5cab5349830, type: 3}
 --- !u!1 &1352910326 stripped
