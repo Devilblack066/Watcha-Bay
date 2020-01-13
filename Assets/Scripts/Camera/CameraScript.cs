@@ -7,8 +7,9 @@ using UnityEngine.EventSystems;
 
 public class CameraScript : MonoBehaviour
 {
-    public static bool inConstructionMode = false;
+     public static bool inConstructionMode = false;
      public ObjectPositioner myObjectPositioner;
+    public ConstructionWindow theConstructionWindow;
 
      public static bool onSomething;
      public GameObject LeftPoint;
@@ -115,7 +116,8 @@ public class CameraScript : MonoBehaviour
          if (onUI) return;
          if (inConstructionMode && myObjectPositioner.batiments != null && Input.GetKeyDown(KeyCode.Mouse0))
          {
-             myObjectPositioner.PlaceCubeNear(hitpoint, myObjectPositioner.batiments);
+            if (theConstructionWindow.SelectedBuild != null) myObjectPositioner.PlaceCubeNear(hitpoint, theConstructionWindow.SelectedBuild.GetComponent<BuildingIcon>().Prefab);
+            else Debug.Log("Pas de batiment sélectionné");
          }
          else if (Input.GetKeyDown(KeyCode.Mouse0) && ((ObjectUnderMouse && (ObjectUnderMouse.tag == "Water" || ObjectUnderMouse.tag == "Floor")) || ObjectUnderMouse == null))
          {
