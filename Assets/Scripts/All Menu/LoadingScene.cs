@@ -56,7 +56,7 @@ public class LoadingScene : MonoBehaviour
             _backgroundImage.color = new Color(0, 0, 255, _currentView);
             _text.color = new Color(255, 201, 0, _currentView);
         }
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
     private void InstatiateLoadingView()
@@ -79,7 +79,7 @@ public class LoadingScene : MonoBehaviour
                 SceneManager.LoadScene("SampleScene");
                 break;
             case LoadingType.MainMenu:
-                SceneManager.LoadScene("Main");
+                SceneManager.LoadScene(0);
                 break;
         }
 

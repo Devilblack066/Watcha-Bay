@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
     public void Option ()
     {
         SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     public void Quitter ()
