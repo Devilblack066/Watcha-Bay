@@ -18,7 +18,20 @@ public class MainMenu : MonoBehaviour
     }
 
     public static LoadingScene Start_game;
+
+    public void Pause()
+    {
+        if (Time.timeScale != 0)
+        {
+            Time.timeScale = 0;
+        }
+        else if (Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+        }
+    }
 }
+
 
 public enum LoadingType
 {
