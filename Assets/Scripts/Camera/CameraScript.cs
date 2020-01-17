@@ -56,6 +56,7 @@ public class CameraScript : MonoBehaviour
          VectorBetweenPointsY = UpPoint.transform.position - DownPoint.transform.position;
 
          myObjectPositioner = gameObject.GetComponent<ObjectPositioner>();
+         theConstructionWindow = GameObject.FindObjectOfType<ConstructionWindow>();
          //m_Raycaster = GetComponent<GraphicRaycaster>();
          //Debug.Log(VectorBetweenPointsX);
          //Debug.Log(VectorBetweenPointsY);
@@ -114,7 +115,7 @@ public class CameraScript : MonoBehaviour
      void TestClick(Vector3 hitpoint)
      {
          if (onUI) return;
-         if (inConstructionMode && myObjectPositioner.batiments != null && Input.GetKeyDown(KeyCode.Mouse0))
+         if (inConstructionMode && Input.GetKeyDown(KeyCode.Mouse0))
          {
             if (theConstructionWindow.SelectedBuild != null) myObjectPositioner.PlaceCubeNear(hitpoint, theConstructionWindow.SelectedBuild.GetComponent<BuildingIcon>().Prefab);
             else Debug.Log("Pas de batiment sélectionné");
@@ -152,7 +153,11 @@ public class CameraScript : MonoBehaviour
 
             Vector3 posOfHit = TestUnderRay();
 
-            if (inConstructionMode) myObjectPositioner.PlaceCubeNear(posOfHit, myObjectPositioner.batiments);
+            if (inConstructionMode)
+            {
+                if (theConstructionWindow.SelectedBuild != null) myObjectPositioner.PlaceCubeNear(posOfHit, theConstructionWindow.SelectedBuild.GetComponent<BuildingIcon>().Prefab);
+                else Debug.Log("Pas de batiment sélectionné");
+            }
             else if((ObjectUnderMouse && ObjectUnderMouse.tag == "Swimmer")) ShowSwimmerStat(ObjectUnderMouse);
             else if (oldTouchPositions[0] == null || oldTouchPositions[1] != null)
             {

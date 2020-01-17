@@ -11,6 +11,7 @@ public class ConstructionWindow : MonoBehaviour
     void Start()
     {
         this.gameObject.SetActive(false);
+        SelectedBuild = null;
     }
 
     // Update is called once per frame
