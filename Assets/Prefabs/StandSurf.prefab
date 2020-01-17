@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 3485919135365522639}
   - component: {fileID: 858692880075967505}
   m_Layer: 0
-  m_Name: Building
+  m_Name: StandSurf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,7 +71,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3485919135365522637}
-  m_Mesh: {fileID: 5571521408760888702, guid: 9e9cb00cdf6e38a4883e9564ef5d08a9, type: 3}
+  m_Mesh: {fileID: -1071689226487956356, guid: 9e9cb00cdf6e38a4883e9564ef5d08a9, type: 3}
 --- !u!23 &3485919135365522639
 MeshRenderer:
   m_ObjectHideFlags: 0
