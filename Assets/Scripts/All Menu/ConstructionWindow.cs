@@ -28,7 +28,15 @@ public class ConstructionWindow : MonoBehaviour
     }
     public void SelectABuilding(GameObject go)
     {
-        SelectedBuild = go;
-        SelectedBuild.GetComponent<Image>().color = Color.green;
+        if (go == SelectedBuild)
+        {
+            SelectedBuild = null;
+            go.GetComponent<Image>().color = Color.white;
+        }
+        else
+        {
+            SelectedBuild = go;
+            SelectedBuild.GetComponent<Image>().color = Color.green;
+        }
     }
 }

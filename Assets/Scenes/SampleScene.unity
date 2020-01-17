@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -254,6 +254,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2273838241239779781, guid: dd03ac41e169daf4d95f80ecb52f6247,
     type: 3}
   m_PrefabInstance: {fileID: 1404927572}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &89191628 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8105149513326550848, guid: b72932b30f883f9478a860f0a1a72e51,
+    type: 3}
+  m_PrefabInstance: {fileID: 656572420}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &126338975
 PrefabInstance:
@@ -1659,6 +1665,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConstructionCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8105149513326550848, guid: b72932b30f883f9478a860f0a1a72e51,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7419506695969965928, guid: b72932b30f883f9478a860f0a1a72e51,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2458,6 +2469,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6318337566745245903, guid: b72932b30f883f9478a860f0a1a72e51,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1985000462}
+    - target: {fileID: 6318337566745245903, guid: b72932b30f883f9478a860f0a1a72e51,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SwitchWithConstructionMode
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b72932b30f883f9478a860f0a1a72e51, type: 3}
@@ -5547,6 +5568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d89071ca9eae7f441b4de11fd6acd5da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  windowConstruction: {fileID: 89191628}
   ButtonConstruction: {fileID: 1448454181}
 --- !u!1001 &1988069221
 PrefabInstance:
@@ -5671,7 +5693,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 656572420}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 89191628}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a61a6dad9ee2b54e9ff8f0e075fdca0, type: 3}
