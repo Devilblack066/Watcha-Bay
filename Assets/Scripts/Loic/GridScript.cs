@@ -5,7 +5,9 @@ using UnityEngine;
 public class GridScript : MonoBehaviour
 {
 
-    
+    [SerializeField]
+    GameObject target;
+
 
     [SerializeField]
     private int size = 1;
@@ -53,7 +55,7 @@ public class GridScript : MonoBehaviour
             for (float z = 0; z < gridWorldSizeY; z += size)
             {
                 GridTabVal[x1, z1]= 0;
-                GridTabPos[x1, z1]= new Vector3(x, 0f, z) + transform.position;
+                GridTabPos[x1, z1]= new Vector3(x, 0f, z) + target.transform.position;
                 //Debug.Log(GridTabPos[x1, z1]);
                 z1 += 1;
             }
