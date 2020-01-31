@@ -37,6 +37,7 @@ public class CameraScript : MonoBehaviour
 
      public AudioSource BeachSound;
 
+    BayStats theBay;
 
     Vector2?[] oldTouchPositions = {
         null,
@@ -49,18 +50,19 @@ public class CameraScript : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-     {
+    {
          CurrentPosX = 0.5f;
          CurrentPosY = 0.0f;
          VectorBetweenPointsX = RightPoint.transform.position - LeftPoint.transform.position;
          VectorBetweenPointsY = UpPoint.transform.position - DownPoint.transform.position;
 
          myObjectPositioner = gameObject.GetComponent<ObjectPositioner>();
-         theConstructionWindow = GameObject.FindObjectOfType<ConstructionWindow>();
-         //m_Raycaster = GetComponent<GraphicRaycaster>();
-         //Debug.Log(VectorBetweenPointsX);
-         //Debug.Log(VectorBetweenPointsY);
-     }
+         //theConstructionWindow = GameObject.FindObjectOfType<ConstructionWindow>();
+         theBay = GameObject.FindObjectOfType<BayStats>();
+        //m_Raycaster = GetComponent<GraphicRaycaster>();
+        //Debug.Log(VectorBetweenPointsX);
+        //Debug.Log(VectorBetweenPointsY);
+    }
      /*
      // Update is called once per frame
      void Update()
@@ -117,7 +119,14 @@ public class CameraScript : MonoBehaviour
          if (onUI) return;
          if (inConstructionMode && Input.GetKeyDown(KeyCode.Mouse0))
          {
-            if (theConstructionWindow.SelectedBuild != null) myObjectPositioner.PlaceCubeNear(hitpoint, theConstructionWindow.SelectedBuild.GetComponent<BuildingIcon>().Prefab);
+            if (theConstructionWindow && theConstructionWindow.SelectedBuild != null)
+            {
+                if (theBay.CanYouPay(theConstructionWindow.SelectedBuild.GetComponent<BuildingIcon>().Prefab.GetComponent<BuildingScript>().Price))
+                {
+                    theBay.PaySomething(theConstructionWindow.SelectedBuild.GetComponent<BuildingIcon>().Prefab.GetComponent<BuildingScript>().Price);
+                    myObjectPositioner.PlaceCubeNear(hitpoint, theConstructionWindow.SelectedBuild.GetComponent<BuildingIcon>().Prefab);
+                }
+            }
             else Debug.Log("Pas de batiment sélectionné");
          }
          else if (Input.GetKeyDown(KeyCode.Mouse0) && ((ObjectUnderMouse && (ObjectUnderMouse.tag == "Water" || ObjectUnderMouse.tag == "Floor")) || ObjectUnderMouse == null))
@@ -155,7 +164,14 @@ public class CameraScript : MonoBehaviour
 
             if (inConstructionMode)
             {
-                if (theConstructionWindow.SelectedBuild != null) myObjectPositioner.PlaceCubeNear(posOfHit, theConstructionWindow.SelectedBuild.GetComponent<BuildingIcon>().Prefab);
+                if (theConstructionWindow && theConstructionWindow.SelectedBuild != null)
+                {
+                    if (theBay.CanYouPay(theConstructionWindow.SelectedBuild.GetComponent<BuildingIcon>().Prefab.GetComponent<BuildingScript>().Price))
+                    {
+                        theBay.PaySomething(theConstructionWindow.SelectedBuild.GetComponent<BuildingIcon>().Prefab.GetComponent<BuildingScript>().Price);
+                        myObjectPositioner.PlaceCubeNear(posOfHit, theConstructionWindow.SelectedBuild.GetComponent<BuildingIcon>().Prefab);
+                    }
+                }
                 else Debug.Log("Pas de batiment sélectionné");
             }
             else if((ObjectUnderMouse && ObjectUnderMouse.tag == "Swimmer")) ShowSwimmerStat(ObjectUnderMouse);

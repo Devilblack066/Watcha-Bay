@@ -6,6 +6,7 @@ public class BuildingIcon : MonoBehaviour
 {
     public GameObject Prefab;
     public ConstructionWindow TheWindow;
+    public float Price;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +21,7 @@ public class BuildingIcon : MonoBehaviour
     public void OnClick()
     {
         TheWindow.UnselectBuilding();
+
         TheWindow.SelectABuilding(this.gameObject);
     }
 }

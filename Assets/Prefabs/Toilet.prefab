@@ -123,3 +123,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Entrance: {fileID: 7870735348363635562}
+  BuildName: Toilettes

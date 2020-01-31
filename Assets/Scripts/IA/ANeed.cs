@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class ANeed : MonoBehaviour
 {
     public typeOfNeed Type;
@@ -47,3 +48,26 @@ public enum typeOfNeed
     Tiredness,
     Hygiene
 }
+
+public class BonusCorrespondance
+{
+    public BonusCorrespondance(BonusMultiplier e, string s, Color c)
+    {
+        EnumMultiplier = e;
+        TextBonus = s;
+        color = c;
+    }
+    public BonusMultiplier EnumMultiplier;
+    public string TextBonus;
+    public Color color;
+};
+
+public enum BonusMultiplier
+{
+    X1,
+    X2,
+    X3,
+    M1,
+    M2,
+    M3
+};
