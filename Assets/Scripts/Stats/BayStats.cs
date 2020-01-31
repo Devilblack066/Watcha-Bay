@@ -112,4 +112,13 @@ public class BayStats : MonoBehaviour
     {
         return (currentMoney);
     }
+    public bool CanYouPay(int price)
+    {
+        if (currentMoney < price) return false;
+        else return true;
+    }
+    public void PaySomething(int price)
+    {
+        currentMoney -= price;
+    }
 }

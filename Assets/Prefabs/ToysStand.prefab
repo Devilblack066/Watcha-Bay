@@ -93,6 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Entrance: {fileID: 4164433940381438810}
+  BuildName: Stand de jouets
 --- !u!1 &4164433940381438810
 GameObject:
   m_ObjectHideFlags: 0
