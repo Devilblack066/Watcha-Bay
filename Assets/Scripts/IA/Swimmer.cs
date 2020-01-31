@@ -15,6 +15,8 @@ public class Swimmer : MonoBehaviour
     Vector3 Destination;
 
     public bool isHighLighted = false;
+
+    public float timerInTheBay = 0.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +44,7 @@ public class Swimmer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timerInTheBay += Time.deltaTime;
         Collider[] colliders = Physics.OverlapBox(gameObject.transform.position, transform.localScale / 2);
         if (Vector3.Distance(this.transform.position,Destination) < 2 && bayStats)
         {

@@ -99,6 +99,7 @@ public class BayStats : MonoBehaviour
     public void leaveTheBay(GameObject swimmer)
     {
         --currentSwimmer;
+        currentMoney += Mathf.CeilToInt(swimmer.GetComponent<Swimmer>().timerInTheBay/60.0f);
         AllSwimmers.Remove(swimmer);
     }
 
