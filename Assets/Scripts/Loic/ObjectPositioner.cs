@@ -46,11 +46,8 @@ public class ObjectPositioner : MonoBehaviour
         }*/
     }
  
-    public void PlaceCubeNear(Vector3 clickPoint,GameObject batiment)
+    public void PlaceCubeNear(Vector3 clickPoint,GameObject batiment, BayStats theBay, int Price)
     {
-
-
-
         var finalPosition = gd.GetNearestPointOnGrid(clickPoint);
                 xtoint = gd.GridTabVal.GetLength(1) - (int) finalPosition.z-1;
                 ytoint = (int) finalPosition.x;
@@ -60,7 +57,7 @@ public class ObjectPositioner : MonoBehaviour
         if (TestPossible(batiment, xtoint, ytoint) == false ) return;
         else
         {
-            
+            theBay.PaySomething(Price);
             objetinst = Instantiate(batiment, clickPoint, Quaternion.identity);
             objetinst.transform.position = finalPosition;
             SpawnBatGridTab(objetinst, xtoint, ytoint);
