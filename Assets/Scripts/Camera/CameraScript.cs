@@ -123,8 +123,7 @@ public class CameraScript : MonoBehaviour
             {
                 if (theBay.CanYouPay(theConstructionWindow.SelectedBuild.GetComponent<BuildingIcon>().Prefab.GetComponent<BuildingScript>().Price))
                 {
-                    theBay.PaySomething(theConstructionWindow.SelectedBuild.GetComponent<BuildingIcon>().Prefab.GetComponent<BuildingScript>().Price);
-                    myObjectPositioner.PlaceCubeNear(hitpoint, theConstructionWindow.SelectedBuild.GetComponent<BuildingIcon>().Prefab);
+                    myObjectPositioner.PlaceCubeNear(hitpoint, theConstructionWindow.SelectedBuild.GetComponent<BuildingIcon>().Prefab, theBay, theConstructionWindow.SelectedBuild.GetComponent<BuildingIcon>().Prefab.GetComponent<BuildingScript>().Price);
                 }
             }
             else Debug.Log("Pas de batiment sélectionné");
@@ -168,8 +167,8 @@ public class CameraScript : MonoBehaviour
                 {
                     if (theBay.CanYouPay(theConstructionWindow.SelectedBuild.GetComponent<BuildingIcon>().Prefab.GetComponent<BuildingScript>().Price))
                     {
-                        theBay.PaySomething(theConstructionWindow.SelectedBuild.GetComponent<BuildingIcon>().Prefab.GetComponent<BuildingScript>().Price);
-                        myObjectPositioner.PlaceCubeNear(posOfHit, theConstructionWindow.SelectedBuild.GetComponent<BuildingIcon>().Prefab);
+                        //theBay.PaySomething(theConstructionWindow.SelectedBuild.GetComponent<BuildingIcon>().Prefab.GetComponent<BuildingScript>().Price);
+                        myObjectPositioner.PlaceCubeNear(posOfHit, theConstructionWindow.SelectedBuild.GetComponent<BuildingIcon>().Prefab,theBay, theConstructionWindow.SelectedBuild.GetComponent<BuildingIcon>().Prefab.GetComponent<BuildingScript>().Price);
                     }
                 }
                 else Debug.Log("Pas de batiment sélectionné");
