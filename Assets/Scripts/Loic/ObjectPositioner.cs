@@ -135,7 +135,8 @@ public class ObjectPositioner : MonoBehaviour
             return false;
         }*/
         Vector2 vec = gd.GetNearestRefOnGrid(new Vector3(xtoint,0f,ytoint));
-        if(vec.x == -99999 || gd.GridTabVal[(int)vec.x,(int)vec.y] != 1.0f){
+        Debug.Log(gd.GridTabVal[(int)vec.x,(int)vec.y]);
+        if(vec.x == -99999 || gd.GridTabVal[(int)vec.x,(int)vec.y] == 1.0f){
 
             return false;
         }
