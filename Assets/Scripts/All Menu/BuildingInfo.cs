@@ -28,11 +28,19 @@ public class BuildingInfo : MonoBehaviour
 
     public void updateInfo()
     {
-        theBuild = GetComponentInParent<ConstructionWindow>().SelectedBuild.GetComponent<BuildingIcon>().Prefab.GetComponent<BuildingScript>();
-        BuildingName.text = theBuild.BuildName;
-        TotalPrice.text = theBuild.Price.ToString()+"£";
-        clearTheGrid();
-        InstantiateAllTuples();
+        if (CameraScript.inConstructionMode && GetComponentInParent<ConstructionWindow>().SelectedBuild != null)
+        {
+            transform.gameObject.SetActive(true);
+            theBuild = GetComponentInParent<ConstructionWindow>().SelectedBuild.GetComponent<BuildingIcon>().Prefab.GetComponent<BuildingScript>();
+            BuildingName.text = theBuild.BuildName;
+            TotalPrice.text = theBuild.Price.ToString() + "£";
+            clearTheGrid();
+            InstantiateAllTuples();
+        }
+        else
+        {
+            transform.gameObject.SetActive(false);
+        }
     }
 
     public void clearTheGrid()
