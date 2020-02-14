@@ -7,7 +7,7 @@ public class BayStats : MonoBehaviour
     int currentSwimmer = 0;
     int maxSwimmer = 5;
 
-    int currentMoney = 100000;
+    int currentMoney = 100;
 
     public List<GameObject> AllFloors;
     //public GameObject goal;
