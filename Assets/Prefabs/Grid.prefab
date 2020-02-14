@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52807c4a8f6fec641b5a56fda40b548d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 672021237254142354}
   size: 10
   gridWorldSizeX: 100
   gridWorldSizeY: 100
