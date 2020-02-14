@@ -49,28 +49,27 @@ public class ObjectPositioner : MonoBehaviour
     public void PlaceCubeNear(Vector3 clickPoint,GameObject batiment, BayStats theBay, int Price)
     {
         var finalPosition = gd.GetNearestPointOnGrid(clickPoint);
-                xtoint = gd.GridTabVal.GetLength(1) - (int) finalPosition.z-1;
-                ytoint = (int) finalPosition.x;
+                //xtoint = gd.GridTabVal.GetLength(1) - (int) finalPosition.z-1;
+                //ytoint = (int) finalPosition.x;
 
-        //Debug.Log(xtoint);
+        Debug.Log(finalPosition);
        //Debug.Log(ytoint);
-        if (TestPossible(batiment, xtoint, ytoint) == false ) return;
+        if (TestPossible(batiment, finalPosition.x, finalPosition.z) == false ) return;
         else
         {
+            Debug.Log("tu es passé");
             theBay.PaySomething(Price);
             objetinst = Instantiate(batiment, clickPoint, Quaternion.identity);
             objetinst.transform.position = finalPosition;
             SpawnBatGridTab(objetinst, xtoint, ytoint);
-            ShowMatrice0And1();
+            //ShowMatrice0And1();
             actualbat = objetinst;
         }
     }
 
 
-    public void SpawnBatGridTab(GameObject go,int xtoint , int ytoint)
+    public void SpawnBatGridTab(GameObject go,float xtoint , float ytoint)
     {
-        var objY= (int)Mathf.Round(go.transform.localScale.x/2);
-        var objX= (int)Mathf.Round(go.transform.localScale.z/2);
 
         //Debug.Log((int)Mathf.Round(xtoint+objX));
         //Debug.Log((int)Mathf.Round(ytoint+objY));
@@ -90,24 +89,23 @@ public class ObjectPositioner : MonoBehaviour
             }
             
         }*/
-        for (int i = 0; i<=objX;++i)
-        {
-            for (int j = 0; j<=objY;++j)
-            {
-                gd.GridTabVal[xtoint + i, ytoint + j] = 1.0f;
-                gd.GridTabVal[xtoint - i, ytoint + j] = 1.0f;
-                gd.GridTabVal[xtoint + i, ytoint - j] = 1.0f;
-                gd.GridTabVal[xtoint - i, ytoint - j] = 1.0f;
-            }
-        }
+        Vector2 vec = gd.GetNearestRefOnGrid(new Vector3(xtoint,0,ytoint));
+        Debug.Log(vec);
+        if(vec.x == -99999)return;
+        gd.GridTabVal[(int)vec.x,(int)vec.y] = 1.0f;
+
 
     }
 
-    public bool TestPossible(GameObject go, int xtoint, int ytoint)
+    public bool TestPossible(GameObject go, float xtoint, float ytoint)
     {
-        var objY = (int)Mathf.Round(go.transform.localScale.x / 2);
-        var objX = (int)Mathf.Round(go.transform.localScale.z / 2);
+        //var objY = (int)Mathf.Round(go.transform.localScale.x / 2);
+        //var objX = (int)Mathf.Round(go.transform.localScale.z / 2);
 
+        //---Debug.Log(xtoint);
+        //---Debug.Log(ytoint);
+
+        
         //Debug.Log(objX); Debug.Log(objY);
         //Debug.Log(xtoint); Debug.Log(ytoint);
         //Debug.Log((int)Mathf.Round(xtoint+objX));
@@ -128,43 +126,18 @@ public class ObjectPositioner : MonoBehaviour
             }  
         }*/
 
-        if (gd.GridTabVal.GetLength(0) <= objX + xtoint || gd.GridTabVal.GetLength(1) <= objY + ytoint || xtoint - objX < 0 || ytoint - objY < 0)
+        /*if (gd.GridTabVal.GetLength(0) <= objX + xtoint || gd.GridTabVal.GetLength(1) <= objY + ytoint || xtoint - objX < 0 || ytoint - objY < 0)
         {
             Debug.Log("ça a pété");
             Debug.Log(gd.GridTabVal.GetLength(0));
             Debug.Log(gd.GridTabVal.GetLength(1));
             return false;
-        }
+        }*/
+        Vector2 vec = gd.GetNearestRefOnGrid(new Vector3(xtoint,0f,ytoint));
+        //Debug.Log(vec);
+        if(vec.x == -99999){
 
-        for (int i = 0; i <= objX; ++i)
-        {
-            for (int j = 0; j <= objY; ++j)
-            {
-                /*gd.GridTabVal[xtoint + i, ytoint + j] = 1.0f;
-                gd.GridTabVal[xtoint - i, ytoint + j] = 1.0f;
-                gd.GridTabVal[xtoint + i, ytoint - j] = 1.0f;
-                gd.GridTabVal[xtoint - i, ytoint - j] = 1.0f;*/
-                if (gd.GridTabVal[xtoint + i, ytoint + j] == 1.0f)
-                {
-                    Debug.Log("ça a pété 1 i-> " +i +", j ->"+ j);
-                    return false;
-                }
-                if (gd.GridTabVal[xtoint - i, ytoint + j] == 1.0f)
-                {
-                    Debug.Log("ça a pété 2 i-> " + i + ", j ->" + j);
-                    return false;
-                }
-                if (gd.GridTabVal[xtoint + i, ytoint - j] == 1.0f)
-                {
-                    Debug.Log("ça a pété 3 i-> " + i + ", j ->" + j);
-                    return false;
-                }
-                if (gd.GridTabVal[xtoint - i, ytoint - j] == 1.0f)
-                {
-                    Debug.Log("ça a pété 4 i-> " + i + ", j ->" + j);
-                    return false;
-                }
-            }
+            return false;
         }
         return true;
     }
@@ -184,7 +157,7 @@ public class ObjectPositioner : MonoBehaviour
             {
                 chaine += gd.GridTabVal[i,y].ToString();
             }
-            Debug.Log(chaine);
+            //Debug.Log(chaine);
         }
         //writer.WriteLine("\n\n\n");
         //writer.Close();

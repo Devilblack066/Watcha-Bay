@@ -148,12 +148,12 @@ public class generalFunctions : MonoBehaviour
     {
         foreach (BuildingFromFile bu in allBuildings)
         {
-            Debug.Log(bu.name);
+            //Debug.Log(bu.name);
             foreach(KeyValuePair<string,BonusCorrespondance> dico in bu.listOfBonusMultiplier)
             {
-                Debug.Log(dico.Key + " " + dico.Value.TextBonus);
+                //Debug.Log(dico.Key + " " + dico.Value.TextBonus);
             }
-            Debug.Log("Price ->" + bu.price);
+            //Debug.Log("Price ->" + bu.price);
         }
     }
 
