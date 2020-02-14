@@ -52,16 +52,16 @@ public class ObjectPositioner : MonoBehaviour
                 //xtoint = gd.GridTabVal.GetLength(1) - (int) finalPosition.z-1;
                 //ytoint = (int) finalPosition.x;
 
-        Debug.Log(finalPosition);
+        //Debug.Log(finalPosition);
        //Debug.Log(ytoint);
         if (TestPossible(batiment, finalPosition.x, finalPosition.z) == false ) return;
         else
         {
-            Debug.Log("tu es passé");
+            //Debug.Log("tu es passé");
             theBay.PaySomething(Price);
             objetinst = Instantiate(batiment, clickPoint, Quaternion.identity);
             objetinst.transform.position = finalPosition;
-            SpawnBatGridTab(objetinst, xtoint, ytoint);
+            SpawnBatGridTab(objetinst, finalPosition.x, finalPosition.z);
             //ShowMatrice0And1();
             actualbat = objetinst;
         }
@@ -90,9 +90,10 @@ public class ObjectPositioner : MonoBehaviour
             
         }*/
         Vector2 vec = gd.GetNearestRefOnGrid(new Vector3(xtoint,0,ytoint));
-        Debug.Log(vec);
+        //Debug.Log(vec);
         if(vec.x == -99999)return;
         gd.GridTabVal[(int)vec.x,(int)vec.y] = 1.0f;
+        Debug.Log(" Valeur de la grille ->"+gd.GridTabVal[(int)vec.x, (int)vec.y] + " Pour i =" +(int)vec.x + " et pour j ="+ (int)vec.y);
 
 
     }
@@ -134,8 +135,7 @@ public class ObjectPositioner : MonoBehaviour
             return false;
         }*/
         Vector2 vec = gd.GetNearestRefOnGrid(new Vector3(xtoint,0f,ytoint));
-        //Debug.Log(vec);
-        if(vec.x == -99999){
+        if(vec.x == -99999 || gd.GridTabVal[(int)vec.x,(int)vec.y] != 1.0f){
 
             return false;
         }
