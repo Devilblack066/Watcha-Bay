@@ -16,13 +16,13 @@ public class CameraScript : MonoBehaviour
      public GameObject RightPoint;
      public GameObject UpPoint;
      public GameObject DownPoint;
+     public float ZoomSpeed = 10.0f;
 
      Vector3 VectorBetweenPointsX;
      Vector3 VectorBetweenPointsY;
 
      float CurrentPosX;
      float CurrentPosY;
-     float speed = 0.05f;
 
      public GraphicRaycaster m_Raycaster;
      public PointerEventData m_PointerEventData;
@@ -45,7 +45,7 @@ public class CameraScript : MonoBehaviour
     };
     Vector2 oldTouchVector;
     float oldTouchDistance;
-    float CameraSpeed = 4f;
+    public float CameraSpeed = 10f;
 
 
     // Start is called before the first frame update
@@ -53,8 +53,8 @@ public class CameraScript : MonoBehaviour
     {
          CurrentPosX = 0.5f;
          CurrentPosY = 0.0f;
-         VectorBetweenPointsX = RightPoint.transform.position - LeftPoint.transform.position;
-         VectorBetweenPointsY = UpPoint.transform.position - DownPoint.transform.position;
+         //VectorBetweenPointsX = RightPoint.transform.position - LeftPoint.transform.position;
+        // VectorBetweenPointsY = UpPoint.transform.position - DownPoint.transform.position;
 
          myObjectPositioner = gameObject.GetComponent<ObjectPositioner>();
          //theConstructionWindow = GameObject.FindObjectOfType<ConstructionWindow>();
@@ -63,58 +63,77 @@ public class CameraScript : MonoBehaviour
         //Debug.Log(VectorBetweenPointsX);
         //Debug.Log(VectorBetweenPointsY);
     }
-     /*
-     // Update is called once per frame
-     void Update()
-     {
-         //Create a list of Raycast Results
 
-         m_PointerEventData = new PointerEventData(m_EventSystem);
-         //Set the Pointer Event Position to that of the mouse position
-         m_PointerEventData.position = Input.mousePosition;
 
-         List<RaycastResult> results = new List<RaycastResult>();
+    void ZoomCamera(bool isPositive)
+    {
+        Vector3 NewPos;
+        if (isPositive)
+        {
+            NewPos = transform.forward * ZoomSpeed;
+            //Debug.Log(transform.forward.z * ZoomSpeed * 10);
+            transform.position = new Vector3(transform.position.x + NewPos.x, Mathf.Clamp(transform.position.y + NewPos.y, 2.0f,40.0f), transform.position.z + NewPos.z);
+            //transform.position += transform.forward * ZoomSpeed;
+        }
+        else
+        {
+            NewPos = transform.forward * -ZoomSpeed;
+            //transform.position += transform.forward * -ZoomSpeed;
+            transform.position = new Vector3(transform.position.x + NewPos.x, Mathf.Clamp(transform.position.y + NewPos.y, 2.0f, 40.0f), transform.position.z + NewPos.z);
+        }
+    }
+    /*
+    // Update is called once per frame
+    void Update()
+    {
+        //Create a list of Raycast Results
 
-         //Raycast using the Graphics Raycaster and mouse click position
-         m_Raycaster.Raycast(m_PointerEventData, results);
+        m_PointerEventData = new PointerEventData(m_EventSystem);
+        //Set the Pointer Event Position to that of the mouse position
+        m_PointerEventData.position = Input.mousePosition;
 
-         if(results.Count > 0)onUI = true;
-         else onUI = false;
-         // Le ray cast    
-         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-         RaycastHit hit;
-         if (Physics.Raycast(ray,out hit))
-         {
-             //Debug.Log(hit.collider.name);
-             ObjectUnderMouse = hit.collider.gameObject;
-         }
-         else
-         {
-             ObjectUnderMouse = null;
-         }
+        List<RaycastResult> results = new List<RaycastResult>();
 
-         // test si mobile ou PC
-         if (Application.platform == RuntimePlatform.Android && Application.platform == RuntimePlatform.IPhonePlayer)
-         {
-             //TestTouch();
-         }
-         else
-         {
-             TestClick(hit.point);
-             //Debug.Log(isTouching);
-         }
+        //Raycast using the Graphics Raycaster and mouse click position
+        m_Raycaster.Raycast(m_PointerEventData, results);
 
-         //Debug.Log(CurrentPosY);
-         BeachSound.volume = CurrentPosY-0.2f;
-         GetComponent<AudioSource>().volume = 1 - CurrentPosY-0.30f;
-         //Camera qui bouge
-         TestCameraMove();
-         MoveCamera();
-     }
+        if(results.Count > 0)onUI = true;
+        else onUI = false;
+        // Le ray cast    
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray,out hit))
+        {
+            //Debug.Log(hit.collider.name);
+            ObjectUnderMouse = hit.collider.gameObject;
+        }
+        else
+        {
+            ObjectUnderMouse = null;
+        }
 
-    */
-     //Test click sur ordi et pour l'éditeur Unity
-     void TestClick(Vector3 hitpoint)
+        // test si mobile ou PC
+        if (Application.platform == RuntimePlatform.Android && Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+            //TestTouch();
+        }
+        else
+        {
+            TestClick(hit.point);
+            //Debug.Log(isTouching);
+        }
+
+        //Debug.Log(CurrentPosY);
+        BeachSound.volume = CurrentPosY-0.2f;
+        GetComponent<AudioSource>().volume = 1 - CurrentPosY-0.30f;
+        //Camera qui bouge
+        TestCameraMove();
+        MoveCamera();
+    }
+
+   */
+    //Test click sur ordi et pour l'éditeur Unity
+    void TestClick(Vector3 hitpoint)
      {
          if (onUI) return;
          if (inConstructionMode && Input.GetKeyDown(KeyCode.Mouse0))
@@ -141,7 +160,15 @@ public class CameraScript : MonoBehaviour
          {
              isTouching = false;
          }
-     }
+         if(Input.GetAxis("Mouse ScrollWheel") > 0)
+         {
+            ZoomCamera(true);
+         }
+         if (Input.GetAxis("Mouse ScrollWheel") < 0)
+         {
+            ZoomCamera(false);
+        }
+    }
 
      //test click pour le téléphone
      void TestTouch()
@@ -177,7 +204,7 @@ public class CameraScript : MonoBehaviour
             else if (oldTouchPositions[0] == null || oldTouchPositions[1] != null)
             {
                 oldTouchPositions[0] = Input.GetTouch(0).position;
-                oldTouchPositions[1] = null;
+                oldTouchPositions[1] = Input.GetTouch(1).position;
             }
             else
             {
@@ -191,8 +218,48 @@ public class CameraScript : MonoBehaviour
                 oldTouchPositions[0] = newTouchPosition;
             }
         }
+        else
+        {
+            if (oldTouchPositions[1] == null)
+            {
+                oldTouchPositions[0] = Input.GetTouch(0).position;
+                oldTouchPositions[1] = Input.GetTouch(1).position;
+                oldTouchVector = (Vector2)(oldTouchPositions[0] - oldTouchPositions[1]);
+                oldTouchDistance = oldTouchVector.magnitude;
+            }
+            else
+            {
+                Vector2 screen = new Vector2(GetComponent<Camera>().pixelWidth, GetComponent<Camera>().pixelHeight);
 
-     }
+                Vector2[] newTouchPositions = {
+                    Input.GetTouch(0).position,
+                    Input.GetTouch(1).position
+                };
+                Vector2 newTouchVector = newTouchPositions[0] - newTouchPositions[1];
+                Vector2 oldTouchVector = (Vector2)(oldTouchPositions[0] - oldTouchPositions[1]);
+                float newTouchDistance = newTouchVector.magnitude;
+                float oldTouchDistance = oldTouchVector.magnitude;
+                if (newTouchDistance > oldTouchDistance)
+                {
+                    ZoomCamera(true);
+                }
+                else
+                {
+                    ZoomCamera(false);
+                }
+                /*transform.position += transform.TransformDirection((Vector3)((oldTouchPositions[0] + oldTouchPositions[1] - screen) * GetComponent<Camera>().orthographicSize / screen.y));
+                transform.localRotation *= Quaternion.Euler(new Vector3(0, 0, Mathf.Asin(Mathf.Clamp((oldTouchVector.y * newTouchVector.x - oldTouchVector.x * newTouchVector.y) / oldTouchDistance / newTouchDistance, -1f, 1f)) / 0.0174532924f));
+                GetComponent<Camera>().orthographicSize *= oldTouchDistance / newTouchDistance;
+                transform.position -= transform.TransformDirection((newTouchPositions[0] + newTouchPositions[1] - screen) * GetComponent<Camera>().orthographicSize / screen.y);*/
+
+               /* oldTouchPositions[0] = newTouchPositions[0];
+                oldTouchPositions[1] = newTouchPositions[1];
+                oldTouchVector = newTouchVector;
+                oldTouchDistance = newTouchDistance;*/
+
+            }
+        }
+    }
    
     //Test sur le déplacement de la caméra sur l'ordinateur
      void TestCameraMove()
@@ -201,28 +268,11 @@ public class CameraScript : MonoBehaviour
          {
              if (Input.GetAxis("Mouse X") != 0)//
              {
-                 //Debug.Log(Input.GetAxis("Mouse X"));
-                 if(Input.GetAxis("Mouse X") > 0 && CurrentPosX > 0)
-                 {
-                     CurrentPosX -= Input.GetAxis("Mouse X") * speed;
-                 }
-                 if (Input.GetAxis("Mouse X") < 0 && CurrentPosX < 1)
-                 {
-                     CurrentPosX -= Input.GetAxis("Mouse X") * speed;
-                 }
+                   transform.position -= Input.GetAxis("Mouse X") * CameraSpeed * transform.right;
              }
              if (Input.GetAxis("Mouse Y") != 0)//
              {
-                 //Debug.Log(Input.GetAxis("Mouse X"));
-                 if (Input.GetAxis("Mouse Y") > 0 && CurrentPosY > 0)
-                 {
-                     CurrentPosY -= Input.GetAxis("Mouse Y") * speed;
-                 }
-                 if (Input.GetAxis("Mouse Y") < 0 && CurrentPosY < 1)
-                 {
-                     CurrentPosY -= Input.GetAxis("Mouse Y") * speed;
-                 }
-                //Debug.Log(Input.GetAxis("Mouse Y"));
+                   transform.position -= Input.GetAxis("Mouse Y") * CameraSpeed * transform.parent.transform.forward;
              }
          }
      }
@@ -260,13 +310,13 @@ public class CameraScript : MonoBehaviour
     void Update()
     {
         // test si mobile ou PC
-        float calculForMusic = (transform.position.z - DownPoint.transform.position.z) / (UpPoint.transform.position.z - DownPoint.transform.position.z);
+        //float calculForMusic = (transform.position.z - DownPoint.transform.position.z) / (UpPoint.transform.position.z - DownPoint.transform.position.z);
         //Debug.Log(calculForMusic);
         if (Application.platform != RuntimePlatform.WindowsPlayer && Application.platform != RuntimePlatform.WindowsEditor)
         {
             TestTouch();
             // Debug.Log(CurrentPosY);
-            CurrentPosY = calculForMusic + 0.2f;
+            //CurrentPosY = calculForMusic + 0.2f;
             //Debug.Log(CurrentPosY);
         }
         else
@@ -287,10 +337,10 @@ public class CameraScript : MonoBehaviour
             TestClick(TestUnderRay());
             //Debug.Log(isTouching);
             TestCameraMove();
-            MoveCamera();
+            //MoveCamera();
         }
-        BeachSound.volume = CurrentPosY - 0.2f;
-        GetComponent<AudioSource>().volume = 1 - CurrentPosY - 0.30f;
+       /* BeachSound.volume = CurrentPosY - 0.2f;
+        GetComponent<AudioSource>().volume = 1 - CurrentPosY - 0.30f;*/
         //Camera qui bouge
     }
 
