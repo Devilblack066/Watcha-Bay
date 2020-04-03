@@ -122,4 +122,9 @@ public class BayStats : MonoBehaviour
     {
         currentMoney -= price;
     }
+
+    public void SellSomething(int price)
+    {
+        currentMoney += price;
+    }
 }

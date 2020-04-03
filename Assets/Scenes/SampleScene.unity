@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1934,11 +1934,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 48.87
       objectReference: {fileID: 0}
-    - target: {fileID: 3313371302284626483, guid: 1fca582fdf3e488419b7e3e87690fcd2,
-        type: 3}
-      propertyPath: m_FontData.m_FontStyle
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3313371300351890289, guid: 1fca582fdf3e488419b7e3e87690fcd2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1948,6 +1943,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.0000088215
+      objectReference: {fileID: 0}
+    - target: {fileID: 3313371302284626483, guid: 1fca582fdf3e488419b7e3e87690fcd2,
+        type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fca582fdf3e488419b7e3e87690fcd2, type: 3}
@@ -3186,7 +3186,7 @@ GameObject:
   - component: {fileID: 787424053}
   - component: {fileID: 787424052}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: DestructionButton
   m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3253,7 +3253,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 787424053}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1985000462}
+        m_MethodName: SwitchWithDestructionMode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &787424053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3836,26 +3847,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grid
       objectReference: {fileID: 0}
-    - target: {fileID: 672021237254142355, guid: eada58c650820a548a3e69793f9a87ed,
-        type: 3}
-      propertyPath: size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 672021237254142355, guid: eada58c650820a548a3e69793f9a87ed,
-        type: 3}
-      propertyPath: gridWorldSizeX
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 672021237254142355, guid: eada58c650820a548a3e69793f9a87ed,
-        type: 3}
-      propertyPath: gridWorldSizeY
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 672021237254142355, guid: eada58c650820a548a3e69793f9a87ed,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 1242345099}
     - target: {fileID: 672021237254142060, guid: eada58c650820a548a3e69793f9a87ed,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3916,6 +3907,26 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 672021237254142355, guid: eada58c650820a548a3e69793f9a87ed,
+        type: 3}
+      propertyPath: size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 672021237254142355, guid: eada58c650820a548a3e69793f9a87ed,
+        type: 3}
+      propertyPath: gridWorldSizeX
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 672021237254142355, guid: eada58c650820a548a3e69793f9a87ed,
+        type: 3}
+      propertyPath: gridWorldSizeY
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 672021237254142355, guid: eada58c650820a548a3e69793f9a87ed,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1242345099}
     - target: {fileID: 7417754564550467084, guid: eada58c650820a548a3e69793f9a87ed,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -6155,11 +6166,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 48.87
       objectReference: {fileID: 0}
-    - target: {fileID: 3313371302284626483, guid: 1fca582fdf3e488419b7e3e87690fcd2,
-        type: 3}
-      propertyPath: m_FontData.m_FontStyle
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3313371300351890289, guid: 1fca582fdf3e488419b7e3e87690fcd2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -6169,6 +6175,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.0000088215
+      objectReference: {fileID: 0}
+    - target: {fileID: 3313371302284626483, guid: 1fca582fdf3e488419b7e3e87690fcd2,
+        type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fca582fdf3e488419b7e3e87690fcd2, type: 3}
@@ -6842,6 +6853,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   windowConstruction: {fileID: 89191628}
   ButtonConstruction: {fileID: 1448454181}
+  ButtonDestruction: {fileID: 0}
 --- !u!1001 &1987007737
 PrefabInstance:
   m_ObjectHideFlags: 0
