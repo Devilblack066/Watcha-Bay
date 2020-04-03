@@ -8,7 +8,8 @@ using UnityEngine.EventSystems;
 public class CameraScript : MonoBehaviour
 {
      public static bool inConstructionMode = false;
-     public ObjectPositioner myObjectPositioner;
+    public static bool inDestructionMode = false;
+    public ObjectPositioner myObjectPositioner;
     public ConstructionWindow theConstructionWindow;
 
      public static bool onSomething;
@@ -135,7 +136,9 @@ public class CameraScript : MonoBehaviour
     //Test click sur ordi et pour l'éditeur Unity
     void TestClick(Vector3 hitpoint)
      {
-         if (onUI) return;
+
+        GameObject ObjHited = ObjUnderRay();
+        if (onUI) return;
          if (inConstructionMode && Input.GetKeyDown(KeyCode.Mouse0))
          {
             if (theConstructionWindow && theConstructionWindow.SelectedBuild != null)
@@ -147,7 +150,12 @@ public class CameraScript : MonoBehaviour
             }
             else Debug.Log("Pas de batiment sélectionné");
          }
-         else if (Input.GetKeyDown(KeyCode.Mouse0) && ((ObjectUnderMouse && (ObjectUnderMouse.tag == "Water" || ObjectUnderMouse.tag == "Floor")) || ObjectUnderMouse == null))
+        else if (inDestructionMode && Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Debug.Log(ObjectUnderMouse);
+            myObjectPositioner.SellCubeNear(hitpoint, ObjectUnderMouse, theBay, ObjHited.GetComponent<BuildingScript>().Price);
+        }
+        else if (Input.GetKeyDown(KeyCode.Mouse0) && ((ObjectUnderMouse && (ObjectUnderMouse.tag == "Water" || ObjectUnderMouse.tag == "Floor")) || ObjectUnderMouse == null))
          {
              //SwimmerWindow.SetActive(false);
              isTouching = true;
@@ -173,6 +181,7 @@ public class CameraScript : MonoBehaviour
      //test click pour le téléphone
      void TestTouch()
      {
+        GameObject ObjHited = ObjUnderRay();
         if (Input.touchCount == 0)
         {
             oldTouchPositions[0] = null;
@@ -199,6 +208,14 @@ public class CameraScript : MonoBehaviour
                     }
                 }
                 else Debug.Log("Pas de batiment sélectionné");
+            }
+            else if (inDestructionMode)
+            {
+                if (ObjectUnderMouse.tag == "batiments")
+                {
+                    Debug.Log(ObjectUnderMouse);
+                    myObjectPositioner.SellCubeNear(posOfHit, ObjectUnderMouse, theBay, ObjHited.GetComponent<BuildingScript>().Price);
+                }
             }
             else if((ObjectUnderMouse && ObjectUnderMouse.tag == "Swimmer")) ShowSwimmerStat(ObjectUnderMouse);
             else if (oldTouchPositions[0] == null || oldTouchPositions[1] != null)
@@ -358,6 +375,22 @@ public class CameraScript : MonoBehaviour
             ObjectUnderMouse = null;
         }
         return hit.point;
+    }
+
+    GameObject ObjUnderRay()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            //Debug.Log(hit.collider.name);
+            ObjectUnderMouse = hit.collider.gameObject;
+        }
+        else
+        {
+            ObjectUnderMouse = null;
+        }
+        return ObjectUnderMouse;
     }
 }
 
