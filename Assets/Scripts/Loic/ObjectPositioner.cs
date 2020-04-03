@@ -46,7 +46,7 @@ public class ObjectPositioner : MonoBehaviour
         }*/
     }
  
-    public void PlaceCubeNear(Vector3 clickPoint,GameObject batiment, BayStats theBay, int Price)
+    public void PlaceCubeNear(Vector3 clickPoint, GameObject batiment, BayStats theBay, int Price)
     {
         var finalPosition = gd.GetNearestPointOnGrid(clickPoint);
                 //xtoint = gd.GridTabVal.GetLength(1) - (int) finalPosition.z-1;
@@ -65,6 +65,16 @@ public class ObjectPositioner : MonoBehaviour
             //ShowMatrice0And1();
             actualbat = objetinst;
         }
+    }
+
+    public void SellCubeNear(Vector3 clickPoint,GameObject batiment, BayStats theBay, int Price)
+    {
+            var finalPosition = gd.GetNearestPointOnGrid(clickPoint);
+
+            //Debug.Log("tu es passé");
+            theBay.SellSomething(Mathf.RoundToInt(Price/2));
+            Destroy(batiment);
+            DespawnBatGridTab(finalPosition.x, finalPosition.z);
     }
 
 
@@ -97,6 +107,19 @@ public class ObjectPositioner : MonoBehaviour
 
 
     }
+
+    public void DespawnBatGridTab(float xtoint, float ytoint)
+    {
+
+        Vector2 vec = gd.GetNearestRefOnGrid(new Vector3(xtoint, 0, ytoint));
+        //Debug.Log(vec);
+        if (vec.x == -99999) return;
+        gd.GridTabVal[(int)vec.x, (int)vec.y] = 0.0f;
+        Debug.Log(" Valeur de la grille ->" + gd.GridTabVal[(int)vec.x, (int)vec.y] + " Pour i =" + (int)vec.x + " et pour j =" + (int)vec.y);
+
+
+    }
+
 
     public bool TestPossible(GameObject go, float xtoint, float ytoint)
     {

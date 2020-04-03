@@ -7,6 +7,7 @@ public class MenuBarInGame : MonoBehaviour
 {
     public GameObject windowConstruction;
     public GameObject ButtonConstruction;
+    public GameObject ButtonDestruction;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +34,20 @@ public class MenuBarInGame : MonoBehaviour
             ButtonConstruction.GetComponent<Image>().color = Color.white;
             Debug.Log("false");
             windowConstruction.SetActive(false);
+        }
+    }
+    public void SwitchWithDestructionMode()
+    {
+        CameraScript.inDestructionMode = !CameraScript.inDestructionMode;
+        if (CameraScript.inDestructionMode && CameraScript.inConstructionMode == false)
+        {
+            ButtonDestruction.GetComponent<Image>().color = Color.red;
+            Debug.Log("true");
+        }
+        else
+        {
+            ButtonDestruction.GetComponent<Image>().color = Color.white;
+            Debug.Log("false or in ConstructionMode");
         }
     }
 }
