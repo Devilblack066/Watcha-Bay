@@ -66,22 +66,13 @@ public class CameraScript : MonoBehaviour
     }
 
 
-    void ZoomCamera(bool isPositive)
+    void ZoomCamera(float Axis)
     {
         Vector3 NewPos;
-        if (isPositive)
-        {
-            NewPos = transform.forward * ZoomSpeed;
-            //Debug.Log(transform.forward.z * ZoomSpeed * 10);
-            transform.position = new Vector3(transform.position.x + NewPos.x, Mathf.Clamp(transform.position.y + NewPos.y, 2.0f,40.0f), transform.position.z + NewPos.z);
-            //transform.position += transform.forward * ZoomSpeed;
-        }
-        else
-        {
-            NewPos = transform.forward * -ZoomSpeed;
-            //transform.position += transform.forward * -ZoomSpeed;
-            transform.position = new Vector3(transform.position.x + NewPos.x, Mathf.Clamp(transform.position.y + NewPos.y, 2.0f, 40.0f), transform.position.z + NewPos.z);
-        }
+        NewPos = transform.forward * ZoomSpeed * Axis;
+        //Debug.Log(transform.forward.z * ZoomSpeed * 10);
+        transform.position = new Vector3(transform.position.x + NewPos.x, Mathf.Clamp(transform.position.y + NewPos.y, 2.0f,40.0f), transform.position.z + NewPos.z);
+
     }
     /*
     // Update is called once per frame
@@ -171,14 +162,10 @@ public class CameraScript : MonoBehaviour
          {
              isTouching = false;
          }
-         if(Input.GetAxis("Mouse ScrollWheel") > 0)
+         if(Input.GetAxis("Mouse ScrollWheel") != 0)
          {
-            ZoomCamera(true);
+            ZoomCamera(Input.GetAxis("Mouse ScrollWheel") * 10.0f);
          }
-         if (Input.GetAxis("Mouse ScrollWheel") < 0)
-         {
-            ZoomCamera(false);
-        }
     }
 
      //test click pour le téléphone
@@ -259,14 +246,9 @@ public class CameraScript : MonoBehaviour
                 Vector2 oldTouchVector = (Vector2)(oldTouchPositions[0] - oldTouchPositions[1]);
                 float newTouchDistance = newTouchVector.magnitude;
                 float oldTouchDistance = oldTouchVector.magnitude;
-                if (newTouchDistance > oldTouchDistance)
-                {
-                    ZoomCamera(true);
-                }
-                else
-                {
-                    ZoomCamera(false);
-                }
+
+                ZoomCamera(-1+(newTouchDistance/oldTouchDistance));
+                
                 /*transform.position += transform.TransformDirection((Vector3)((oldTouchPositions[0] + oldTouchPositions[1] - screen) * GetComponent<Camera>().orthographicSize / screen.y));
                 transform.localRotation *= Quaternion.Euler(new Vector3(0, 0, Mathf.Asin(Mathf.Clamp((oldTouchVector.y * newTouchVector.x - oldTouchVector.x * newTouchVector.y) / oldTouchDistance / newTouchDistance, -1f, 1f)) / 0.0174532924f));
                 GetComponent<Camera>().orthographicSize *= oldTouchDistance / newTouchDistance;
