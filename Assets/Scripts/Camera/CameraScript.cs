@@ -68,6 +68,7 @@ public class CameraScript : MonoBehaviour
 
     void ZoomCamera(float Axis)
     {
+        Axis = Mathf.Clamp(Axis, -1, 1);
         Vector3 NewPos;
         NewPos = transform.forward * ZoomSpeed * Axis;
         //Debug.Log(transform.forward.z * ZoomSpeed * 10);
