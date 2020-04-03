@@ -94,7 +94,7 @@ public class GridScript : MonoBehaviour
                 GridTabVal[x1, z1]= 0;
                 GridTabPos[x1][z1]= new Vector3(x+initialpos.x, 0f, z+initialpos.z) ;
 
-                Debug.Log(GridTabPos[x1][z1]);
+                //Debug.Log(GridTabPos[x1][z1]);
                 z1 += 1;
             }
             x1 += 1;
