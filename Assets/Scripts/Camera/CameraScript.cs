@@ -152,8 +152,11 @@ public class CameraScript : MonoBehaviour
          }
         else if (inDestructionMode && Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Debug.Log(ObjectUnderMouse);
-            myObjectPositioner.SellCubeNear(hitpoint, ObjectUnderMouse, theBay, ObjHited.GetComponent<BuildingScript>().Price);
+            if (ObjectUnderMouse.tag == "batiments")
+            {
+                Debug.Log(ObjectUnderMouse);
+                myObjectPositioner.SellCubeNear(hitpoint, ObjectUnderMouse, theBay, ObjHited.GetComponent<BuildingScript>().Price);
+            }
         }
         else if (Input.GetKeyDown(KeyCode.Mouse0) && ((ObjectUnderMouse && (ObjectUnderMouse.tag == "Water" || ObjectUnderMouse.tag == "Floor")) || ObjectUnderMouse == null))
          {
