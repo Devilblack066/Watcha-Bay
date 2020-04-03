@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 8594195660435650974}
   - component: {fileID: 8594195660435650975}
   - component: {fileID: 5534500667464307009}
+  - component: {fileID: 4367652501681666969}
   m_Layer: 0
   m_Name: Toilet
   m_TagString: batiments
@@ -125,3 +126,16 @@ MonoBehaviour:
   Entrance: {fileID: 7870735348363635562}
   BuildName: Toilettes
   Price: 25
+--- !u!65 &4367652501681666969
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8594195660435650973}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.2005496, y: 2.7518682, z: 1.9001197}
+  m_Center: {x: 0, y: 1.3759341, z: 0.000000059604645}

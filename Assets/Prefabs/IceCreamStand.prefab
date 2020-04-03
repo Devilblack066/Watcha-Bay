@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 1895737323996427016}
   - component: {fileID: 1895737323996427017}
   - component: {fileID: 2433574849711872983}
+  - component: {fileID: 8359926234783341869}
   m_Layer: 0
   m_Name: IceCreamStand
   m_TagString: batiments
@@ -125,3 +126,16 @@ MonoBehaviour:
   Entrance: {fileID: 14017120336273916}
   BuildName: Stand de glaces
   Price: 50
+--- !u!65 &8359926234783341869
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895737323996427019}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.9068432, y: 3.9684541, z: 1.9068431}
+  m_Center: {x: -0.000000029802322, y: 1.9842271, z: 0}

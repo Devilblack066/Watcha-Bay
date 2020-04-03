@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 3485919135365522638}
   - component: {fileID: 3485919135365522639}
   - component: {fileID: 858692880075967505}
+  - component: {fileID: 8601854276293787033}
   m_Layer: 0
   m_Name: StandSurf
   m_TagString: batiments
@@ -125,3 +126,16 @@ MonoBehaviour:
   Entrance: {fileID: 3035065021506369082}
   BuildName: Stand de surfs
   Price: 150
+--- !u!65 &8601854276293787033
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3485919135365522637}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8.640001, y: 6.4509225, z: 4.371028}
+  m_Center: {x: 0, y: 3.2254612, z: 0}
