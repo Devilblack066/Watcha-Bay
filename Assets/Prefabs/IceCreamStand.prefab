@@ -13,8 +13,8 @@ GameObject:
   m_Name: Entrance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &4814073001969984194
 Transform:
@@ -43,12 +43,13 @@ GameObject:
   - component: {fileID: 1895737323996427017}
   - component: {fileID: 2433574849711872983}
   - component: {fileID: 8359926234783341869}
+  - component: {fileID: 8755196086085604678}
   m_Layer: 0
   m_Name: IceCreamStand
   m_TagString: batiments
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1895737323996427018
 Transform:
@@ -139,3 +140,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.9068432, y: 3.9684541, z: 1.9068431}
   m_Center: {x: -0.000000029802322, y: 1.9842271, z: 0}
+--- !u!208 &8755196086085604678
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895737323996427019}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.95300007, y: 1.9840001, z: 0.95300007}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.9840001, z: 0}
+  m_TimeToStationary: 0.5
