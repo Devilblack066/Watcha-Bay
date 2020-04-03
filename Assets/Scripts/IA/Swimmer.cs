@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class Swimmer : MonoBehaviour
 {
+    enum SwimmerState { Wandering, IsGoingToABuilding, IsUsingABuilding }
     public BayStats bayStats;
 
     string firstName;
@@ -13,6 +14,8 @@ public class Swimmer : MonoBehaviour
     NavMeshAgent myAgent;
     ANeed[] myNeeds;
     Vector3 Destination;
+
+    SwimmerState State = 0;
 
     public bool isHighLighted = false;
 
@@ -46,18 +49,22 @@ public class Swimmer : MonoBehaviour
     {
         timerInTheBay += Time.deltaTime;
         Collider[] colliders = Physics.OverlapBox(gameObject.transform.position, transform.localScale / 2);
-        if (Vector3.Distance(this.transform.position,Destination) < 2 && bayStats)
-        {
-            Destination = bayStats.FindAPointOnBeach();
-            MoveTo();
-        }
-        if (myNeeds[4].Value < 30)
-        {
-            leaveTheBay();
-        }
 
-        transform.LookAt(Destination);
 
+        if (State == 0)
+        {
+            if (Vector3.Distance(this.transform.position, Destination) < 2 && bayStats)
+            {
+                Destination = bayStats.FindAPointOnBeach();
+                MoveTo();
+            }
+            if (myNeeds[4].Value < 30)
+            {
+                leaveTheBay();
+            }
+
+            transform.LookAt(Destination);
+        }
         /*if(Input.GetKeyDown(KeyCode.Space))
         {
             showNeeds();
