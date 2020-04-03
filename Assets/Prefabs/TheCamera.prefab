@@ -16,7 +16,7 @@ GameObject:
   m_Name: TheCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &7339625045161506797
@@ -110,7 +110,7 @@ GameObject:
   m_Name: Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!224 &2693598969607054191
@@ -206,6 +206,7 @@ MonoBehaviour:
   m_EventSystem: {fileID: 0}
   SwimmerWindow: {fileID: 0}
   BeachSound: {fileID: 0}
+  CameraSpeed: 10
 --- !u!82 &1706610539
 AudioSource:
   m_ObjectHideFlags: 0

@@ -13,8 +13,8 @@ GameObject:
   m_Name: Entrance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &7557178794768561412
 Transform:
@@ -43,12 +43,13 @@ GameObject:
   - component: {fileID: 3485919135365522639}
   - component: {fileID: 858692880075967505}
   - component: {fileID: 5316100785901994328}
+  - component: {fileID: 2987567743888775876}
   m_Layer: 0
   m_Name: StandDrinks
   m_TagString: batiments
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &3485919135365522636
 Transform:
@@ -139,3 +140,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.8990526, y: 5.915847, z: 4.9368277}
   m_Center: {x: 0, y: 2.8833375, z: 0}
+--- !u!208 &2987567743888775876
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3485919135365522637}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 2.45, y: 2.9210002, z: 2.4680002}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 2.9210002, z: 0}
+  m_TimeToStationary: 0.5

@@ -1159,6 +1159,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: parasol (4)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: c8b12fd1871d0e742a04cfbea1eca2c7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: c8b12fd1871d0e742a04cfbea1eca2c7,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: c8b12fd1871d0e742a04cfbea1eca2c7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1167,7 +1177,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: c8b12fd1871d0e742a04cfbea1eca2c7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.007
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: c8b12fd1871d0e742a04cfbea1eca2c7,
         type: 3}
