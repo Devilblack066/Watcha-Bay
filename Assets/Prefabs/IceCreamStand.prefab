@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 2433574849711872983}
   m_Layer: 0
   m_Name: IceCreamStand
-  m_TagString: Untagged
+  m_TagString: batiments
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,3 +124,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Entrance: {fileID: 14017120336273916}
   BuildName: Stand de glaces
+  Price: 50

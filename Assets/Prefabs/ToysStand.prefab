@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4164433940381438838}
   m_Layer: 0
   m_Name: ToysStand
-  m_TagString: Untagged
+  m_TagString: batiments
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94,6 +94,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Entrance: {fileID: 4164433940381438810}
   BuildName: Stand de jouets
+  Price: 100
 --- !u!1 &4164433940381438810
 GameObject:
   m_ObjectHideFlags: 0

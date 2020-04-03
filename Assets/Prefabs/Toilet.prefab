@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 5534500667464307009}
   m_Layer: 0
   m_Name: Toilet
-  m_TagString: Untagged
+  m_TagString: batiments
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,3 +124,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Entrance: {fileID: 7870735348363635562}
   BuildName: Toilettes
+  Price: 25
