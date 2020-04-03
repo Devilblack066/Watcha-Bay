@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 3485919135365522638}
   - component: {fileID: 3485919135365522639}
   - component: {fileID: 858692880075967505}
+  - component: {fileID: 5316100785901994328}
   m_Layer: 0
   m_Name: StandDrinks
   m_TagString: batiments
@@ -125,3 +126,16 @@ MonoBehaviour:
   Entrance: {fileID: 3035065021506369082}
   BuildName: Stand de boissons
   Price: 0
+--- !u!65 &5316100785901994328
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3485919135365522637}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.8990526, y: 0.3890152, z: 4.9368277}
+  m_Center: {x: 0, y: 5.6467533, z: 0}
