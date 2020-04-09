@@ -68,6 +68,36 @@ public class Swimmer : MonoBehaviour
                 SearchBuilding(myNeeds[0]);
             }
 
+            if (myNeeds[1].Value < 98)
+            {
+                State = SwimmerState.IsGoingToABuilding;
+                SearchBuilding(myNeeds[1]);
+            }
+
+            if (myNeeds[2].Value < 50)
+            {
+                State = SwimmerState.IsGoingToABuilding;
+                SearchBuilding(myNeeds[2]);
+            }
+
+            if (myNeeds[3].Value < 50)
+            {
+                State = SwimmerState.IsGoingToABuilding;
+                SearchBuilding(myNeeds[3]);
+            }
+
+            if (myNeeds[4].Value < 50)
+            {
+                State = SwimmerState.IsGoingToABuilding;
+                SearchBuilding(myNeeds[4]);
+            }
+
+            if (myNeeds[5].Value < 50)
+            {
+                State = SwimmerState.IsGoingToABuilding;
+                SearchBuilding(myNeeds[5]);
+            }
+
             transform.LookAt(Destination);
         }
         /*if(Input.GetKeyDown(KeyCode.Space))
