@@ -62,6 +62,11 @@ public class Swimmer : MonoBehaviour
             {
                 leaveTheBay();
             }
+            if (myNeeds[0].Value < 98)
+            {
+                State = SwimmerState.IsGoingToABuilding;
+                SearchBuilding(myNeeds[0]);
+            }
 
             transform.LookAt(Destination);
         }
@@ -107,6 +112,11 @@ public class Swimmer : MonoBehaviour
     {
         bayStats.leaveTheBay(gameObject);
         Destroy(gameObject);
+    }
+
+    public void SearchBuilding(ANeed need)
+    {
+        Debug.Log("The need is " + need.Name);
     }
 
     public string getLastName() { return lastName; }
