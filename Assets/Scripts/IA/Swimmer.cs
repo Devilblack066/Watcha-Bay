@@ -155,7 +155,7 @@ public class Swimmer : MonoBehaviour
     public void searchBuilding(ANeed need)
     {
         changeState(SwimmerState.IsGoingToABuilding);
-        Debug.Log("The swimmer need is " + need.Name);
+        //Debug.Log("The swimmer need is " + need.Name);
         BuildingScript[] buildingTab = GameObject.FindObjectsOfType<BuildingScript>();
         if (buildingTab.Length == 0)
         {
@@ -165,6 +165,9 @@ public class Swimmer : MonoBehaviour
         }
         foreach (BuildingScript building in buildingTab)
         {
+            building.CatchBuildingBonus();
+            /*Debug.Log(building.BuildName);
+            Debug.Log(building.theBonus.Count);*/
             building.ShowBonus();
             if (building.theBonus.ContainsKey(need.Name) && (building.theBonus[need.Name].EnumMultiplier == BonusMultiplier.X1 || building.theBonus[need.Name].EnumMultiplier == BonusMultiplier.X2 || building.theBonus[need.Name].EnumMultiplier == BonusMultiplier.X3))
             {
