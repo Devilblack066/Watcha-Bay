@@ -8,6 +8,10 @@ public class GridScript : MonoBehaviour
     [SerializeField]
     GameObject target;
 
+    [SerializeField]
+    GameObject GridCell;
+
+    GameObject GridRef;
 
     [SerializeField]
     private int size = 1;
@@ -20,6 +24,7 @@ public class GridScript : MonoBehaviour
 
     public float[,] GridTabVal;
     public Vector3[][] GridTabPos;
+    public GameObject[,] GridTabGo;
 
     private int x1;
     private int z1;
@@ -79,7 +84,8 @@ public class GridScript : MonoBehaviour
 
         GridTabVal = new float [gridWorldSizeX, gridWorldSizeY];
         GridTabPos = new Vector3[gridWorldSizeX][];
-        for(int i = 0 ; i<gridWorldSizeX; ++i ){
+        GridTabGo = new GameObject[gridWorldSizeX, gridWorldSizeY];
+        for (int i = 0 ; i<gridWorldSizeX; ++i ){
             GridTabPos[i] =  new Vector3[gridWorldSizeY];
         }
 
@@ -93,8 +99,10 @@ public class GridScript : MonoBehaviour
             {
                 GridTabVal[x1, z1]= 0;
                 GridTabPos[x1][z1]= new Vector3(x+initialpos.x, 0f, z+initialpos.z) ;
-
-                //Debug.Log(GridTabPos[x1][z1]);
+                GridRef = Instantiate(GridCell, new Vector3(x + initialpos.x, 0.5f, z + initialpos.z), Quaternion.Euler(90, 0, 0));
+                GridTabGo[x1,z1] = GridRef.gameObject;
+               
+                Debug.Log(GridTabGo[x1,z1]);
                 z1 += 1;
             }
             x1 += 1;
@@ -115,6 +123,8 @@ public class GridScript : MonoBehaviour
             {
                 var point = GetNearestPointOnGrid(new Vector3(x, 0f, z)+transform.position );
                 Gizmos.DrawWireCube(point,new Vector3(0.1f*size,0.1f*size,0.1f*size));
+
+                
                 //Debug.Log(GridTabPos[x1, z1]);
                 z1 += 1;
             }

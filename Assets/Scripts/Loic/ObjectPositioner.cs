@@ -10,7 +10,6 @@ public class ObjectPositioner : MonoBehaviour
     public GameObject actualbat;
     public GameObject objetinst = null;
 
-
     public int xtoint;
     public int ytoint;
 
@@ -104,7 +103,7 @@ public class ObjectPositioner : MonoBehaviour
         if(vec.x == -99999)return;
         gd.GridTabVal[(int)vec.x,(int)vec.y] = 1.0f;
         Debug.Log(" Valeur de la grille ->"+gd.GridTabVal[(int)vec.x, (int)vec.y] + " Pour i =" +(int)vec.x + " et pour j ="+ (int)vec.y);
-
+        gd.GridTabGo[(int)vec.x,(int)vec.y].GetComponent<SpriteRenderer>().color = new Color(1.0f, 0.0f, 0.0f, 0.75f);
 
     }
 
@@ -116,7 +115,7 @@ public class ObjectPositioner : MonoBehaviour
         if (vec.x == -99999) return;
         gd.GridTabVal[(int)vec.x, (int)vec.y] = 0.0f;
         Debug.Log(" Valeur de la grille ->" + gd.GridTabVal[(int)vec.x, (int)vec.y] + " Pour i =" + (int)vec.x + " et pour j =" + (int)vec.y);
-
+        gd.GridTabGo[(int)vec.x,(int)vec.y].GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 0.75f);
 
     }
 

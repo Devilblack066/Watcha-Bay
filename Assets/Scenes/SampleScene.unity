@@ -1938,11 +1938,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 48.87
       objectReference: {fileID: 0}
-    - target: {fileID: 3313371302284626483, guid: 1fca582fdf3e488419b7e3e87690fcd2,
-        type: 3}
-      propertyPath: m_FontData.m_FontStyle
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3313371300351890289, guid: 1fca582fdf3e488419b7e3e87690fcd2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1952,6 +1947,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.0000088215
+      objectReference: {fileID: 0}
+    - target: {fileID: 3313371302284626483, guid: 1fca582fdf3e488419b7e3e87690fcd2,
+        type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fca582fdf3e488419b7e3e87690fcd2, type: 3}
@@ -3938,6 +3938,12 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1242345099}
+    - target: {fileID: 672021237254142355, guid: eada58c650820a548a3e69793f9a87ed,
+        type: 3}
+      propertyPath: GridCell
+      value: 
+      objectReference: {fileID: 6482690742305231319, guid: 36a45a9158edc8d408ab77e00948d141,
+        type: 3}
     - target: {fileID: 672021237254142060, guid: eada58c650820a548a3e69793f9a87ed,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6237,11 +6243,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 48.87
       objectReference: {fileID: 0}
-    - target: {fileID: 3313371302284626483, guid: 1fca582fdf3e488419b7e3e87690fcd2,
-        type: 3}
-      propertyPath: m_FontData.m_FontStyle
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3313371300351890289, guid: 1fca582fdf3e488419b7e3e87690fcd2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -6251,6 +6252,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.0000088215
+      objectReference: {fileID: 0}
+    - target: {fileID: 3313371302284626483, guid: 1fca582fdf3e488419b7e3e87690fcd2,
+        type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fca582fdf3e488419b7e3e87690fcd2, type: 3}
