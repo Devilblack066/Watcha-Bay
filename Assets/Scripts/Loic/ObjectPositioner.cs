@@ -80,24 +80,6 @@ public class ObjectPositioner : MonoBehaviour
     public void SpawnBatGridTab(GameObject go,float xtoint , float ytoint)
     {
 
-        //Debug.Log((int)Mathf.Round(xtoint+objX));
-        //Debug.Log((int)Mathf.Round(ytoint+objY));
-
-        /*var Pointertogrid = gd.GridTabPos[xtoint,ytoint];
-
-        gd.GridTabVal[xtoint,ytoint] = 1.0f;
-        if(objX != 1.0f && objY != 1.0f){
-            for(var i=1; i<objX;i++){
-                gd.GridTabVal[xtoint+i,0] = 1.0f;
-                gd.GridTabVal[xtoint-i,0] = 1.0f;
-                Debug.Log( gd.GridTabVal[xtoint+i,0] + " - "+" - "+ gd.GridTabVal[xtoint-i,0]);
-                    for(var z=0; z<= objY;z++){
-                        gd.GridTabVal[i,ytoint+z] = 1.0f;
-                        gd.GridTabVal[i,ytoint-z] = 1.0f;
-                    }
-            }
-            
-        }*/
         Vector2 vec = gd.GetNearestRefOnGrid(new Vector3(xtoint,0,ytoint));
         //Debug.Log(vec);
         if(vec.x == -99999)return;

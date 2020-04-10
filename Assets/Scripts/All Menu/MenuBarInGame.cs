@@ -9,17 +9,34 @@ public class MenuBarInGame : MonoBehaviour
     public GameObject ButtonConstruction;
     public GameObject ButtonDestruction;
 
+    public GameObject[,] gridtab;
+
     CameraScript cam;
+    GridScript gs;
     // Start is called before the first frame update
     void Start()
     {
         cam = GameObject.Find("TheCamera").GetComponentInChildren<CameraScript>();
+        gs = GameObject.Find("Grid").GetComponentInChildren<GridScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    void setActiveGrid(bool act)
+    {
+        for (float x = 0; x < gs.gridWorldSizeX / gs.size; x++)
+        {
+            for (float z = 0; z < gs.gridWorldSizeY / gs.size; z++)
+            {
+                gs.GridTabGo[(int)x, (int)z].SetActive(act);
+                //Debug.Log(GridTabGo[x1,z1]);
+
+            }
+        }
     }
 
     public void SwitchWithConstructionMode()
@@ -33,6 +50,7 @@ public class MenuBarInGame : MonoBehaviour
                 ButtonDestruction.GetComponent<Image>().color = Color.white;
                 Debug.Log("true");
                 windowConstruction.SetActive(true);
+                setActiveGrid(true);
             }
             else
             {
@@ -40,6 +58,7 @@ public class MenuBarInGame : MonoBehaviour
                 ButtonConstruction.GetComponent<Image>().color = Color.white;
                 Debug.Log("false");
                 windowConstruction.SetActive(false);
+                setActiveGrid(false);
             }
         }
         else
@@ -49,6 +68,7 @@ public class MenuBarInGame : MonoBehaviour
             ButtonDestruction.GetComponent<Image>().color = Color.white;
             Debug.Log("false");
             windowConstruction.SetActive(false);
+            setActiveGrid(false);
         }
     }
     public void SwitchWithDestructionMode()
@@ -64,6 +84,7 @@ public class MenuBarInGame : MonoBehaviour
                 Debug.Log("true");
 
                 windowConstruction.SetActive(false);
+                setActiveGrid(false);
             }
             else
             {
