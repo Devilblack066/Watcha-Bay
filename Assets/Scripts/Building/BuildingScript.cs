@@ -14,7 +14,12 @@ public class BuildingScript : MonoBehaviour
     {
         theBonus = new Dictionary<string, BonusCorrespondance>();
         BuildingFromFile build = generalFunctions.FindStatsBuildingFromName(BuildName);
-        theBonus = build.listOfBonusMultiplier;
+        //theBonus = build.listOfBonusMultiplier;
+        foreach (KeyValuePair<string,BonusCorrespondance> keyvalue in build.listOfBonusMultiplier)
+        {
+            theBonus.Add(keyvalue.Key, keyvalue.Value);
+        }
+        Debug.Log(theBonus.Count);
         Price = build.price;
     }
 

@@ -53,7 +53,7 @@ public class generalFunctions : MonoBehaviour
         {
             result = true;
         }
-        Debug.Log(result +" -> " +name );
+        //Debug.Log(result +" -> " +name );
         return result;
 
         /*switch (name)
@@ -184,11 +184,12 @@ public class generalFunctions : MonoBehaviour
                     //Debug.Log(entete[j] + " -> " + entete[j].Length);
                     if (entete[j] == "Name")
                     {
+                        //Debug.Log(lineData[j]);
                         building.name = lineData[j];
                     }
                     else if(isANeed(entete[j]) && lineData[j] != "")
                     {
-                        Debug.Log(lineData[j]);
+                        //Debug.Log(lineData[j]);
                         
                         building.listOfBonusMultiplier.Add(entete[j], ReturnTheBonus(lineData[j]));
                     }
@@ -203,7 +204,6 @@ public class generalFunctions : MonoBehaviour
                     }*/
                 }
                 allBuildings.Add(building);
-
             }
         }
     }
