@@ -14,13 +14,13 @@ public class GridScript : MonoBehaviour
     GameObject GridRef;
 
     [SerializeField]
-    private int size = 1;
+    public int size = 1;
 
     [SerializeField]
-    private int gridWorldSizeX = 50;
+    public int gridWorldSizeX = 50;
 
     [SerializeField]
-    private int gridWorldSizeY = 50;
+    public int gridWorldSizeY = 50;
 
     public float[,] GridTabVal;
     public Vector3[][] GridTabPos;
@@ -28,7 +28,12 @@ public class GridScript : MonoBehaviour
 
     private int x1;
     private int z1;
-    
+
+    public void Update()
+    {
+       
+    }
+
     public Vector3 GetNearestPointOnGrid(Vector3 position)
     {
         position -= transform.position;
@@ -99,10 +104,10 @@ public class GridScript : MonoBehaviour
             {
                 GridTabVal[x1, z1]= 0;
                 GridTabPos[x1][z1]= new Vector3(x+initialpos.x, 0f, z+initialpos.z) ;
-                GridRef = Instantiate(GridCell, new Vector3(x + initialpos.x, 0.5f, z + initialpos.z), Quaternion.Euler(90, 0, 0));
+                GridRef = Instantiate(GridCell, new Vector3(x + initialpos.x, 0.5f, z + initialpos.z), Quaternion.Euler(90, 0, 0), GameObject.Find("GridCells").transform);
                 GridTabGo[x1,z1] = GridRef.gameObject;
-               
-                Debug.Log(GridTabGo[x1,z1]);
+                GridRef.gameObject.SetActive(false);
+                //Debug.Log(GridTabGo[x1,z1]);
                 z1 += 1;
             }
             x1 += 1;
