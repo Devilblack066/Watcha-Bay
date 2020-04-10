@@ -29,6 +29,50 @@ public class generalFunctions : MonoBehaviour
         
     }
 
+    static bool isANeed(string name)
+    {
+        // Debug.Log(name);
+        bool result = false;
+        if ("Entertainment" == name)
+        {
+            result = true;
+        }
+        if ("Tiredness" == name)
+        {
+            result = true;
+        }
+        if ("Hunger" == name)
+        {
+            result = true;
+        }
+        if ("Thirst" == name)
+        {
+            result = true;
+        }
+        if ("Hygiene" == name)
+        {
+            result = true;
+        }
+        Debug.Log(result +" -> " +name );
+        return result;
+
+        /*switch (name)
+        {
+            case "Entertainment":
+                return true;
+            case "Tiredness":
+                return true;
+            case "Hunger":
+                return true;
+            case "Thirst":
+                return true;
+            case "Hygiene":
+                return true;
+            default:
+                return false;
+        }*/
+    }
+
     static void InitNames()
     {
         allLastNames = new List<string>();
@@ -66,12 +110,12 @@ public class generalFunctions : MonoBehaviour
     static void InitAllBonus()
     {
         allBonus = new List<BonusCorrespondance>();
-        allBonus.Add(new BonusCorrespondance(BonusMultiplier.X3, "+++", GreenColor));
-        allBonus.Add(new BonusCorrespondance(BonusMultiplier.X2, "++", GreenColor));
-        allBonus.Add(new BonusCorrespondance(BonusMultiplier.X1, "+", GreenColor));
-        allBonus.Add(new BonusCorrespondance(BonusMultiplier.M3, "---", RedColor));
-        allBonus.Add(new BonusCorrespondance(BonusMultiplier.M2, "--", RedColor));
-        allBonus.Add(new BonusCorrespondance(BonusMultiplier.M1, "-", RedColor));
+        allBonus.Add(new BonusCorrespondance(BonusMultiplier.X3, "+++", GreenColor,20));
+        allBonus.Add(new BonusCorrespondance(BonusMultiplier.X2, "++", GreenColor,10));
+        allBonus.Add(new BonusCorrespondance(BonusMultiplier.X1, "+", GreenColor,5));
+        allBonus.Add(new BonusCorrespondance(BonusMultiplier.M3, "---", RedColor,0));
+        allBonus.Add(new BonusCorrespondance(BonusMultiplier.M2, "--", RedColor,0));
+        allBonus.Add(new BonusCorrespondance(BonusMultiplier.M1, "-", RedColor,0));
     }
 
     static BonusCorrespondance ReturnTheBonus(BonusMultiplier bonus)
@@ -123,23 +167,43 @@ public class generalFunctions : MonoBehaviour
             if (i == 0) {
                 for (int j = 0; j < lineData.Length; ++j)
                 {
-                    entete.Add(lineData[j]);  
+                    string chaine = lineData[j].Replace(" ", "");
+                    chaine = chaine.Replace("\n", "");
+                    chaine = chaine.Replace("\r", "");
+                    entete.Add(chaine);
                 }
             }
             else
             {
 
                // Debug.Log(lineData[(lineData.Length - 2)]);
-                BuildingFromFile building = new BuildingFromFile(lineData[0], int.Parse(lineData[(lineData.Length-2)]));
-                for (int j = 0; j < lineData.Length-2; ++j)
+                BuildingFromFile building = new BuildingFromFile();
+                
+                for (int j = 0; j < lineData.Length; ++j)
                 {
-                    if (j != 0 && lineData[j]!="")
+                    //Debug.Log(entete[j] + " -> " + entete[j].Length);
+                    if (entete[j] == "Name")
+                    {
+                        building.name = lineData[j];
+                    }
+                    else if(isANeed(entete[j]) && lineData[j] != "")
+                    {
+                        Debug.Log(lineData[j]);
+                        
+                        building.listOfBonusMultiplier.Add(entete[j], ReturnTheBonus(lineData[j]));
+                    }
+                    else if (entete[j] == "BuildingPrice")
+                    {
+                        building.price = int.Parse(lineData[j]);
+                    }
+                    /*if (j != 0 && lineData[j]!="")
                     {
                         //Debug.Log( j+" "+entete[j]+" "+lineData[j]);
                         building.listOfBonusMultiplier.Add(entete[j],ReturnTheBonus(lineData[j]));
-                    }
+                    }*/
                 }
                 allBuildings.Add(building);
+
             }
         }
     }
@@ -168,10 +232,15 @@ public class generalFunctions : MonoBehaviour
         }
         return null;
     }
+
 }
 
 public class BuildingFromFile
 {
+    public BuildingFromFile()
+    {
+        listOfBonusMultiplier = new Dictionary<string, BonusCorrespondance>();
+    }
     public BuildingFromFile(string n, int p)
     {
         name = n;

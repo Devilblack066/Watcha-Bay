@@ -1,7 +1,7 @@
-Name;Entertainment;Tiredness;Hunger;Thrist;Hygiene;Price;
-Stand de boissons;;;;+++;-;100;
-Snacks;;;+++;-;;50;
-Stand de surfs;+++;;;;;150;
-Stand de glaces;;;+;+;;50;
-Toilettes;;;;;+++;25;
-Stand de jouets;++;;;;;100;
+Name;Entertainment;Tiredness;Hunger;Thirst;Hygiene;BuildingPrice;EntertainmentPrice;TirednessPrice;HungerPrice;ThristPrice;HygienePrice;
+Stand de boissons;;;;+++;-;100;0;0;0;20;0;
+Snacks;;;+++;-;;50;0;0;20;0;0;
+Stand de surfs;+++;;;;;150;0;0;0;20;0;
+Stand de glaces;;;+;+;;50;0;0;5;5;0;
+Toilettes;;;;;+++;25;0;0;0;0;20;
+Stand de jouets;++;;;;;100;10;0;0;0;0;
