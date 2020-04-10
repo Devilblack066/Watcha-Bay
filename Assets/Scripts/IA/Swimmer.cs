@@ -138,14 +138,16 @@ public class Swimmer : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void changeState(SwimmerState State)
+    public void changeState()
     {
+        Debug.Log("State :" + State);
         State = SwimmerState.IsGoingToABuilding;
+        Debug.Log("State 2 :" + State);
     }
 
     public void searchBuilding(ANeed need)
     {
-        changeState(SwimmerState.IsGoingToABuilding);
+        changeState();
         Debug.Log("The need is " + need.Name);
     }
 
