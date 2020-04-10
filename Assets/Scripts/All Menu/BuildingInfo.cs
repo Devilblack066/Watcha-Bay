@@ -14,10 +14,13 @@ public class BuildingInfo : MonoBehaviour
     public GameObject gridParent;
 
     public BuildingScript theBuild;
+
+
+    public CameraScript cam;
     // Start is called before the first frame update
     void Start()
-    {
-        
+    { 
+        cam = GameObject.Find("TheCamera").GetComponentInChildren<CameraScript>();
     }
 
     // Update is called once per frame
@@ -28,7 +31,7 @@ public class BuildingInfo : MonoBehaviour
 
     public void updateInfo()
     {
-        if (CameraScript.inConstructionMode && GetComponentInParent<ConstructionWindow>().SelectedBuild != null)
+        if (cam.Typestate == CameraScript.StateEnum.Construction && GetComponentInParent<ConstructionWindow>().SelectedBuild != null)
         {
             transform.gameObject.SetActive(true);
             theBuild = GetComponentInParent<ConstructionWindow>().SelectedBuild.GetComponent<BuildingIcon>().Prefab.GetComponent<BuildingScript>();

@@ -7,8 +7,18 @@ using UnityEngine.EventSystems;
 
 public class CameraScript : MonoBehaviour
 {
-     public static bool inConstructionMode = false;
-    public static bool inDestructionMode = false;
+
+    public enum StateEnum
+    {
+        Normal,
+        Construction,
+        Destruction,
+    }
+
+    public StateEnum Typestate;
+
+    //public static bool inConstructionMode = false;
+    //public static bool inDestructionMode = false;
     public ObjectPositioner myObjectPositioner;
     public ConstructionWindow theConstructionWindow;
 
@@ -55,14 +65,19 @@ public class CameraScript : MonoBehaviour
          CurrentPosX = 0.5f;
          CurrentPosY = 0.0f;
          //VectorBetweenPointsX = RightPoint.transform.position - LeftPoint.transform.position;
-        // VectorBetweenPointsY = UpPoint.transform.position - DownPoint.transform.position;
-
+         // VectorBetweenPointsY = UpPoint.transform.position - DownPoint.transform.position;
+         Typestate = StateEnum.Normal;
          myObjectPositioner = gameObject.GetComponent<ObjectPositioner>();
          //theConstructionWindow = GameObject.FindObjectOfType<ConstructionWindow>();
          theBay = GameObject.FindObjectOfType<BayStats>();
-        //m_Raycaster = GetComponent<GraphicRaycaster>();
-        //Debug.Log(VectorBetweenPointsX);
-        //Debug.Log(VectorBetweenPointsY);
+         //m_Raycaster = GetComponent<GraphicRaycaster>();
+         //Debug.Log(VectorBetweenPointsX);
+         //Debug.Log(VectorBetweenPointsY);
+    }
+
+    public void setEnumState(StateEnum value)
+    {
+        Typestate = value;
     }
 
 
@@ -131,7 +146,7 @@ public class CameraScript : MonoBehaviour
 
         GameObject ObjHited = ObjUnderRay();
         if (onUI) return;
-         if (inConstructionMode && Input.GetKeyDown(KeyCode.Mouse0))
+         if (Typestate == StateEnum.Construction && Input.GetKeyDown(KeyCode.Mouse0))
          {
             if (theConstructionWindow && theConstructionWindow.SelectedBuild != null)
             {
@@ -142,7 +157,7 @@ public class CameraScript : MonoBehaviour
             }
             else Debug.Log("Pas de batiment sélectionné");
          }
-        else if (inDestructionMode && Input.GetKeyDown(KeyCode.Mouse0))
+        else if (Typestate == StateEnum.Destruction  && Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (ObjectUnderMouse.tag == "batiments")
             {
@@ -188,7 +203,7 @@ public class CameraScript : MonoBehaviour
 
             Vector3 posOfHit = TestUnderRay();
 
-            if (inConstructionMode)
+            if (Typestate == StateEnum.Construction)
             {
                 if (theConstructionWindow && theConstructionWindow.SelectedBuild != null)
                 {
@@ -200,7 +215,7 @@ public class CameraScript : MonoBehaviour
                 }
                 else Debug.Log("Pas de batiment sélectionné");
             }
-            else if (inDestructionMode)
+            else if (Typestate == StateEnum.Destruction)
             {
                 if (ObjectUnderMouse.tag == "batiments")
                 {
