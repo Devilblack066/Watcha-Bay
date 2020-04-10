@@ -18,6 +18,14 @@ public class BuildingScript : MonoBehaviour
         Price = build.price;
     }
 
+    public void ShowBonus()
+    {
+        foreach (KeyValuePair<string,BonusCorrespondance> corresp in theBonus)
+        {
+            Debug.Log(corresp.Key);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {

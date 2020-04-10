@@ -20,6 +20,10 @@ public class Swimmer : MonoBehaviour
     public bool isHighLighted = false;
 
     public float timerInTheBay = 0.0f;
+
+    public float cooldownDefaultSearch = 10.0f;
+    float cooldownCurrentSearch = 0.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +57,7 @@ public class Swimmer : MonoBehaviour
 
         if (State == 0)
         {
+            cooldownCurrentSearch = cooldownCurrentSearch - Time.deltaTime;
             if (Vector3.Distance(this.transform.position, Destination) < 2 && bayStats)
             {
                 Destination = bayStats.FindAPointOnBeach();
@@ -62,37 +67,41 @@ public class Swimmer : MonoBehaviour
             {
                 leaveTheBay();
             }
-            if (myNeeds[0].Value < 98)
+            if (cooldownCurrentSearch <= 0.0f)
             {
-                searchBuilding(myNeeds[0]);
+                if (myNeeds[0].Value < 50)
+                {
+                    searchBuilding(myNeeds[0]);
+
+                }
+
+                if (myNeeds[1].Value < 98)
+                {
+                    searchBuilding(myNeeds[1]);
+                }
+
+                if (myNeeds[2].Value < 50)
+                {
+                    searchBuilding(myNeeds[2]);
+                }
+
+                if (myNeeds[3].Value < 50)
+                {
+                    searchBuilding(myNeeds[3]);
+                }
+
+                if (myNeeds[4].Value < 50)
+                {
+                    searchBuilding(myNeeds[4]);
+                }
+
+                if (myNeeds[5].Value < 50)
+                {
+                    searchBuilding(myNeeds[5]);
+                }
             }
 
-            if (myNeeds[1].Value < 98)
-            {
-                searchBuilding(myNeeds[1]);
-            }
-
-            if (myNeeds[2].Value < 50)
-            {
-                searchBuilding(myNeeds[2]);
-            }
-
-            if (myNeeds[3].Value < 50)
-            {
-                searchBuilding(myNeeds[3]);
-            }
-
-            if (myNeeds[4].Value < 50)
-            {
-                searchBuilding(myNeeds[4]);
-            }
-
-            if (myNeeds[5].Value < 50)
-            {
-                searchBuilding(myNeeds[5]);
-            }
-
-            transform.LookAt(Destination);
+                transform.LookAt(Destination);
         }
         /*if(Input.GetKeyDown(KeyCode.Space))
         {
@@ -138,17 +147,32 @@ public class Swimmer : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void changeState()
+    public void changeState(SwimmerState statut)
     {
-        Debug.Log("State :" + State);
-        State = SwimmerState.IsGoingToABuilding;
-        Debug.Log("State 2 :" + State);
+        State = statut;
     }
 
     public void searchBuilding(ANeed need)
     {
-        changeState();
-        Debug.Log("The need is " + need.Name);
+        changeState(SwimmerState.IsGoingToABuilding);
+        Debug.Log("The swimmer need is " + need.Name);
+        BuildingScript[] buildingTab = GameObject.FindObjectsOfType<BuildingScript>();
+        if (buildingTab.Length == 0)
+        {
+            changeState(SwimmerState.Wandering);
+            cooldownCurrentSearch = cooldownDefaultSearch;
+            return;
+        }
+        foreach (BuildingScript building in buildingTab)
+        {
+            building.ShowBonus();
+            if (building.theBonus.ContainsKey(need.Name) && (building.theBonus[need.Name].EnumMultiplier == BonusMultiplier.X1 || building.theBonus[need.Name].EnumMultiplier == BonusMultiplier.X2 || building.theBonus[need.Name].EnumMultiplier == BonusMultiplier.X3))
+            {
+                Destination = building.Entrance.transform.position;
+                MoveTo();
+            }
+        }
+
     }
 
     public string getLastName() { return lastName; }
