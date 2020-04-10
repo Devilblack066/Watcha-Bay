@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Swimmer : MonoBehaviour
 {
-    enum SwimmerState { Wandering, IsGoingToABuilding, IsUsingABuilding }
+    public enum SwimmerState { Wandering, IsGoingToABuilding, IsUsingABuilding }
     public BayStats bayStats;
 
     string firstName;
@@ -64,38 +64,32 @@ public class Swimmer : MonoBehaviour
             }
             if (myNeeds[0].Value < 98)
             {
-                State = SwimmerState.IsGoingToABuilding;
-                SearchBuilding(myNeeds[0]);
+                searchBuilding(myNeeds[0]);
             }
 
             if (myNeeds[1].Value < 98)
             {
-                State = SwimmerState.IsGoingToABuilding;
-                SearchBuilding(myNeeds[1]);
+                searchBuilding(myNeeds[1]);
             }
 
             if (myNeeds[2].Value < 50)
             {
-                State = SwimmerState.IsGoingToABuilding;
-                SearchBuilding(myNeeds[2]);
+                searchBuilding(myNeeds[2]);
             }
 
             if (myNeeds[3].Value < 50)
             {
-                State = SwimmerState.IsGoingToABuilding;
-                SearchBuilding(myNeeds[3]);
+                searchBuilding(myNeeds[3]);
             }
 
             if (myNeeds[4].Value < 50)
             {
-                State = SwimmerState.IsGoingToABuilding;
-                SearchBuilding(myNeeds[4]);
+                searchBuilding(myNeeds[4]);
             }
 
             if (myNeeds[5].Value < 50)
             {
-                State = SwimmerState.IsGoingToABuilding;
-                SearchBuilding(myNeeds[5]);
+                searchBuilding(myNeeds[5]);
             }
 
             transform.LookAt(Destination);
@@ -144,8 +138,16 @@ public class Swimmer : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void SearchBuilding(ANeed need)
+    public void changeState()
     {
+        Debug.Log("State :" + State);
+        State = SwimmerState.IsGoingToABuilding;
+        Debug.Log("State 2 :" + State);
+    }
+
+    public void searchBuilding(ANeed need)
+    {
+        changeState();
         Debug.Log("The need is " + need.Name);
     }
 
