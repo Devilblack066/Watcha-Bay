@@ -7166,6 +7166,11 @@ PrefabInstance:
       propertyPath: gridWorldSizeY
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 7729258830540721526, guid: b0e0b06a1b1b90d45b7b37640901cb63,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 15.6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0e0b06a1b1b90d45b7b37640901cb63, type: 3}
 --- !u!1001 &2273838241032512001

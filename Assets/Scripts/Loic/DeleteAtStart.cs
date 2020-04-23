@@ -26,7 +26,7 @@ public class DeleteAtStart : MonoBehaviour
     {
  
     }
-        private void OnTriggerEnter(Collider other) {
+    private void OnTriggerEnter(Collider other) {
 
         /*if(other.gameObject.CompareTag("batiments") && isAlColided == 0)
         {

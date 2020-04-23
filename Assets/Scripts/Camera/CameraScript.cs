@@ -142,7 +142,7 @@ public class CameraScript : MonoBehaviour
    */
     //Test click sur ordi et pour l'éditeur Unity
     void TestClick(Vector3 hitpoint)
-     {
+    {
 
         GameObject ObjHited = ObjUnderRay();
         if (onUI) return;
