@@ -35,7 +35,10 @@ public class CameraScript : MonoBehaviour
      float CurrentPosX;
      float CurrentPosY;
 
-     public GraphicRaycaster m_Raycaster;
+    public float LimitX;
+    public float LimitZ;
+
+    public GraphicRaycaster m_Raycaster;
      public PointerEventData m_PointerEventData;
      public EventSystem m_EventSystem;
      bool onUI = false;
@@ -63,6 +66,8 @@ public class CameraScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        LimitX = GameObject.Find("Xlimit").gameObject.transform.position.x;
+        LimitZ = GameObject.Find("Zlimit").gameObject.transform.position.z;
          CurrentPosX = 0.5f;
          CurrentPosY = 0.0f;
          //VectorBetweenPointsX = RightPoint.transform.position - LeftPoint.transform.position;
@@ -287,11 +292,39 @@ public class CameraScript : MonoBehaviour
          {
              if (Input.GetAxis("Mouse X") != 0)//
              {
-                   transform.position -= Input.GetAxis("Mouse X") * CameraSpeed * transform.right;
-             }
+                if (transform.position.x <= LimitX && transform.position.x >= -LimitX)
+                {
+                    transform.position -= Input.GetAxis("Mouse X") * CameraSpeed * transform.right;
+                }
+                else
+                {
+                    if (transform.position.x < 0)
+                    {
+                        transform.position = new Vector3(-LimitX + 1, transform.position.y, transform.position.z);
+                    }
+                    else
+                    {
+                        transform.position = new Vector3(LimitX - 1, transform.position.y, transform.position.z);
+                    }
+                }
+            }
              if (Input.GetAxis("Mouse Y") != 0)//
              {
-                   transform.position -= Input.GetAxis("Mouse Y") * CameraSpeed * transform.parent.transform.forward;
+                if (transform.position.z <= LimitZ && transform.position.z >= -LimitZ)
+                {
+                    transform.position -= Input.GetAxis("Mouse Y") * CameraSpeed * transform.parent.transform.forward;
+                }
+                else
+                {
+                    if (transform.position.z < 0)
+                    {
+                        transform.position = new Vector3(transform.position.x, transform.position.y, -LimitZ + 1);
+                    }
+                    else
+                    {
+                        transform.position = new Vector3(transform.position.x, transform.position.y, LimitZ - 1);
+                    }
+                }
              }
          }
      }
@@ -300,7 +333,10 @@ public class CameraScript : MonoBehaviour
      void MoveCamera()
      {
          Vector3 result = (LeftPoint.transform.position + (VectorBetweenPointsX * CurrentPosX)) + (DownPoint.transform.position + (VectorBetweenPointsY * CurrentPosY));
-         transform.position = new Vector3(result.x, transform.position.y, result.z-25);
+        if(result.x < LimitX && result.x>-LimitX && result.z < LimitZ && result.z > -LimitZ)
+        {
+            transform.position = new Vector3(result.x, transform.position.y, result.z - 25);
+        }
      }
 
     //Montre la fenêtre du nageur
