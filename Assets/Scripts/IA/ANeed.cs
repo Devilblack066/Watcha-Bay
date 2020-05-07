@@ -12,6 +12,21 @@ public class ANeed : MonoBehaviour
 
     float timer = 0.0f;
 
+    public void addValue(int v)
+    {
+        if (Value + v > MaxValue)
+        {
+            Value = MaxValue;
+        }
+        else if (Value + v < 0)
+        {
+            Value = 0;
+        }
+        else
+        {
+            Value += v;
+        }
+    }
 
     ANeed(typeOfNeed ton, string s, int val, int max) { Type = ton; Name = s; Value = val;  MaxValue = max; }
     // Start is called before the first frame update

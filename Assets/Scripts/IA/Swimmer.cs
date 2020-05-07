@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Swimmer : MonoBehaviour
 {
-    public enum SwimmerState { Wandering, IsGoingToABuilding, IsUsingABuilding }
+    public enum SwimmerState { Wandering = 0, IsGoingToABuilding = 1, IsUsingABuilding = 2 }
     public BayStats bayStats;
 
     string firstName;
@@ -23,6 +23,11 @@ public class Swimmer : MonoBehaviour
 
     public float cooldownDefaultSearch = 10.0f;
     float cooldownCurrentSearch = 0.0f;
+
+    BuildingScript lastBuilding;
+
+    public float cooldownDefaultUsingB = 3.0f;
+    float cooldownUsingB = 0.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -55,7 +60,7 @@ public class Swimmer : MonoBehaviour
         Collider[] colliders = Physics.OverlapBox(gameObject.transform.position, transform.localScale / 2);
 
 
-        if (State == 0)
+        if (State == SwimmerState.Wandering)
         {
             cooldownCurrentSearch = cooldownCurrentSearch - Time.deltaTime;
             if (Vector3.Distance(this.transform.position, Destination) < 2 && bayStats)
@@ -100,9 +105,29 @@ public class Swimmer : MonoBehaviour
                     searchBuilding(myNeeds[5]);
                 }
             }
+            transform.LookAt(Destination);
 
-                transform.LookAt(Destination);
         }
+        if (State == SwimmerState.IsGoingToABuilding)
+        {
+            Debug.Log("IS GOING !");
+            if (Vector3.Distance(this.transform.position, Destination) < 2)
+            {
+                cooldownUsingB = cooldownDefaultUsingB;
+                changeState(SwimmerState.IsUsingABuilding);
+            }
+        }
+
+        if (State == SwimmerState.IsUsingABuilding)
+        {
+            cooldownUsingB -= Time.deltaTime;
+            if (cooldownUsingB <= 0)
+            {
+                provideNeed(lastBuilding);
+                changeState(SwimmerState.Wandering);
+            }
+        }
+
         /*if(Input.GetKeyDown(KeyCode.Space))
         {
             showNeeds();
@@ -172,10 +197,59 @@ public class Swimmer : MonoBehaviour
             if (building.theBonus.ContainsKey(need.Name) && (building.theBonus[need.Name].EnumMultiplier == BonusMultiplier.X1 || building.theBonus[need.Name].EnumMultiplier == BonusMultiplier.X2 || building.theBonus[need.Name].EnumMultiplier == BonusMultiplier.X3))
             {
                 Destination = building.Entrance.transform.position;
+                lastBuilding = building;
                 MoveTo();
             }
         }
 
+    }
+
+    public void provideNeed(BuildingScript building)
+    {
+        foreach(KeyValuePair<string, BonusCorrespondance> theBonus in building.theBonus)
+        { 
+            Debug.Log("provideNeed " + theBonus.Key);
+            Debug.Log("provideNeed price: " + theBonus.Value.Price);
+            switch(theBonus.Value.EnumMultiplier)
+            {
+                case BonusMultiplier.X1:
+                    addRessources(theBonus.Key, 10);
+                    bayStats.SellSomething(theBonus.Value.Price);
+                    break;
+                case BonusMultiplier.X2:
+                    addRessources(theBonus.Key, 20);
+                    bayStats.SellSomething(theBonus.Value.Price);
+                    break;
+                case BonusMultiplier.X3:
+                    addRessources(theBonus.Key, 30);
+                    bayStats.SellSomething(theBonus.Value.Price);
+                    break;
+                case BonusMultiplier.M1:
+                    addRessources(theBonus.Key, -10);
+                    break;
+                case BonusMultiplier.M2:
+                    addRessources(theBonus.Key, -20);
+                    break;
+                case BonusMultiplier.M3:
+                    addRessources(theBonus.Key, -30);
+                    break;
+                default:
+                    break;
+
+            }
+        }
+    }
+
+    public void addRessources(string nameANeed, int value)
+    {
+        for (int i = 0; i < myNeeds.Length; ++i)
+        {
+            if (myNeeds[i].Name == nameANeed)
+            {
+                myNeeds[i].addValue(value);
+                return;
+            }
+        }
     }
 
     public string getLastName() { return lastName; }
