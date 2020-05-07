@@ -54,9 +54,9 @@ public class SwimmerWindow : MonoBehaviour
                         mySliderHunger.value = result;
                         //Debug.Log("Hunger a pour valeur " + need.Value + "/" + need.MaxValue);
                         break;
-                    case "Thrist":
+                    case "Thirst":
                         mySliderThirst.value = result;
-                        //Debug.Log("Thrist a pour valeur " + need.Value + "/" + need.MaxValue);
+                        Debug.Log("Thrist a pour valeur " + need.Value + "/" + need.MaxValue);
                         break;
                     case "Entertainment":
                         mySliderEntertainment.value = result;
