@@ -15,6 +15,16 @@ public class Swimmer : MonoBehaviour
     ANeed[] myNeeds;
     Vector3 Destination;
 
+    public Material poop;
+    public Material divertissement;
+    public Material cocktail;
+    public Material hamburger;
+    public Material happy;
+    public Material Zzz;
+
+    public ParticleSystem particles;
+    public ParticleSystemRenderer particlesR;
+
     SwimmerState State = 0;
 
     public bool isHighLighted = false;
@@ -123,8 +133,10 @@ public class Swimmer : MonoBehaviour
             cooldownUsingB -= Time.deltaTime;
             if (cooldownUsingB <= 0)
             {
+                
                 provideNeed(lastBuilding);
                 changeState(SwimmerState.Wandering);
+
             }
         }
 
@@ -244,6 +256,41 @@ public class Swimmer : MonoBehaviour
     {
         for (int i = 0; i < myNeeds.Length; ++i)
         {
+            switch (nameANeed)
+            {
+                case "Happinness":
+                    particlesR.material = happy;
+                    particles.Play();
+                    break;
+
+                case "Hunger" :
+                    particlesR.material = hamburger;
+                    particles.Play();
+                    break;
+
+                case "Thirst":
+                    particlesR.material = cocktail;
+                    particles.Play();
+                    break;
+
+                case "Entertainment":
+                    particlesR.material = divertissement;
+                    particles.Play();
+                    break;
+
+                case "Tiredness":
+                    particlesR.material = Zzz;
+                    particles.Play();
+                    break;
+
+                case "Hygiene":
+                    particlesR.material = poop;
+                    particles.Play();
+                    break;
+
+                default:
+                    break;
+            }
             if (myNeeds[i].Name == nameANeed)
             {
                 myNeeds[i].addValue(value);

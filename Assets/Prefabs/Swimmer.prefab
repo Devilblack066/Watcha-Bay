@@ -85,9 +85,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bayStats: {fileID: 0}
+  poop: {fileID: 2100000, guid: ade08cd5ca71f474f83af5283e1d717c, type: 2}
+  divertissement: {fileID: 2100000, guid: d9f5afcb0da359641a2942b73c5468ce, type: 2}
+  cocktail: {fileID: 2100000, guid: 4d7f195dcb3177245a9b13ba8548ea5b, type: 2}
+  hamburger: {fileID: 2100000, guid: b34954738e7202248a16d5fffa35ef94, type: 2}
+  happy: {fileID: 2100000, guid: d9f5afcb0da359641a2942b73c5468ce, type: 2}
+  Zzz: {fileID: 2100000, guid: 6a77d31359144cc4cb0f8f37f1c2695d, type: 2}
+  particles: {fileID: 2984399581445185342}
+  particlesR: {fileID: 2984399581445185343}
   isHighLighted: 0
   timerInTheBay: 0
   cooldownDefaultSearch: 10
+  cooldownDefaultUsingB: 3
 --- !u!65 &1357817715082125394
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -440,6 +449,18 @@ PrefabInstance:
 --- !u!4 &2984399581445185341 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8212373763143101890, guid: 6900a2de3024b2a42a1ef57fd5e0847a,
+    type: 3}
+  m_PrefabInstance: {fileID: 6382306516660957951}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &2984399581445185342 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8212373763143101889, guid: 6900a2de3024b2a42a1ef57fd5e0847a,
+    type: 3}
+  m_PrefabInstance: {fileID: 6382306516660957951}
+  m_PrefabAsset: {fileID: 0}
+--- !u!199 &2984399581445185343 stripped
+ParticleSystemRenderer:
+  m_CorrespondingSourceObject: {fileID: 8212373763143101888, guid: 6900a2de3024b2a42a1ef57fd5e0847a,
     type: 3}
   m_PrefabInstance: {fileID: 6382306516660957951}
   m_PrefabAsset: {fileID: 0}
