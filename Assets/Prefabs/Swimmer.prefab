@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 655557378928041557}
   - component: {fileID: 655557378928041556}
   - component: {fileID: 655557378928041545}
+  - component: {fileID: 1357817715082125394}
   m_Layer: 0
   m_Name: Swimmer
   m_TagString: Swimmer
@@ -86,6 +87,19 @@ MonoBehaviour:
   isHighLighted: 0
   timerInTheBay: 0
   cooldownDefaultSearch: 10
+--- !u!65 &1357817715082125394
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655557378928041555}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.99142015, y: 1.8671873, z: 0.57366806}
+  m_Center: {x: 0.00428991, y: 0.9221252, z: 0.028988987}
 --- !u!1 &2127474592988238715
 GameObject:
   m_ObjectHideFlags: 0
