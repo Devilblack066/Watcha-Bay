@@ -45,8 +45,9 @@ public class CameraScript : MonoBehaviour
      GameObject ObjectUnderMouse;
 
      public GameObject SwimmerWindow;
+    public GameObject oldswimmer;
 
-     public AudioSource BeachSound;
+    public AudioSource BeachSound;
 
     BayStats theBay;
 
@@ -305,8 +306,14 @@ public class CameraScript : MonoBehaviour
     //Montre la fenêtre du nageur
     void ShowSwimmerStat(GameObject swimmer)
     {
+        if(oldswimmer != null)
+        {
+            oldswimmer.transform.GetChild(1).gameObject.SetActive(false);
+        }
+        swimmer.transform.GetChild(1).gameObject.SetActive(true);
         SwimmerWindow.SetActive(true);
         SwimmerWindow.GetComponent<SwimmerWindow>().swimmer = swimmer;
+        oldswimmer = swimmer;
     }
 
     //Savoir si la souris ou le doigt est sur de l'UI ou non
